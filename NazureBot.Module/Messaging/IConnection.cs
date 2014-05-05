@@ -20,7 +20,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace NazureBot.Modules.Irc
+namespace NazureBot.Modules.Messaging
 {
     #region Using directives
 
@@ -56,7 +56,7 @@ namespace NazureBot.Modules.Irc
         /// <value>
         /// The client.
         /// </value>
-        IIrcClient Client { get; }
+        IChatClient Client { get; }
 
         /// <summary>
         /// Gets or sets the modules.

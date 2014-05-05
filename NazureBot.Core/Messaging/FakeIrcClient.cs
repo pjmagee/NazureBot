@@ -20,7 +20,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace NazureBot.Core.Irc
+namespace NazureBot.Core.Messaging
 {
     #region Using directives
 
@@ -31,17 +31,17 @@ namespace NazureBot.Core.Irc
 
     using NazureBot.Core.Infrastructure.Entities;
     using NazureBot.Modules.Events;
-    using NazureBot.Modules.Irc;
     using NazureBot.Modules.Messages;
+    using NazureBot.Modules.Messaging;
 
     using Ninject;
 
     #endregion
 
     /// <summary>
-    /// 
+    /// The fake irc client used to simulate irc chatter from an irc server.
     /// </summary>
-    public class FakeIrcClient : AbstractIrcClient, IStartable
+    public class FakeIrcClient : AbstractClient, IStartable
     {
         #region Fields
 
@@ -171,15 +171,13 @@ namespace NazureBot.Core.Irc
                             var user = new User("Peej!patrick.magee@192.168.0.1");
                             var channel = new Channel { Name = "#fake", Network = this.network as Network };
 
-                            this.OnPrivateMessageReceived(new QueryMessageReceivedEventArgs(user, this.server, MessageFormat.Message, MessageBroadcast.Private, "fake message"));
-                            this.OnPublicMessageReceived(new ChannelMessageReceivedEventArgs(user, this.server, channel, MessageFormat.Message, MessageBroadcast.Public, "fake message"));
+                            this.OnPrivateMessageReceived(new PrivateMessageReceivedEventArgs(user, this.server, MessageFormat.Message, MessageBroadcast.Private, "fake message"));
+                            this.OnPublicMessageReceived(new PublicMessageReceivedEventArgs(user, this.server, channel, MessageFormat.Message, MessageBroadcast.Public, "fake message"));
                         }
 
                         Thread.Sleep(TimeSpan.FromSeconds(20));
                     }
-                }, 
-                this.tokenSource.Token, 
-                TaskCreationOptions.LongRunning, TaskScheduler.Current);
+                }, this.tokenSource.Token, TaskCreationOptions.LongRunning, TaskScheduler.Current);
         }
 
         /// <summary>

@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="INetwork.cs" company="Patrick Magee">
+// <copyright file="IServer.cs" company="Patrick Magee">
 //   Copyright © 2013 Patrick Magee
 //   
 //   This program is free software: you can redistribute it and/or modify it
@@ -16,56 +16,39 @@
 //   along with this program. If not, see http://www.gnu.org/licenses/.
 // </copyright>
 // <summary>
-//   The Network interface.
+//   The Server interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace NazureBot.Modules.Irc
+namespace NazureBot.Modules.Messaging
 {
-    #region Using directives
-
-    using System.Collections.Generic;
-
-    #endregion
-
     /// <summary>
-    /// The Network interface.
+    /// The Server interface.
     /// </summary>
-    public interface INetwork
+    public interface IServer
     {
         #region Public Properties
 
         /// <summary>
-        /// Gets the channels.
+        /// Gets the address.
         /// </summary>
         /// <value>
-        /// The channels.
+        /// The address.
         /// </value>
-        IEnumerable<IChannel> Channels { get; }
+        string Address { get; }
 
         /// <summary>
-        /// Gets the identity.
+        /// Gets the port.
         /// </summary>
         /// <value>
-        /// The identity.
+        /// The port.
         /// </value>
-        IIdentity Identity { get; }
+        int Port { get; }
 
         /// <summary>
-        /// Gets the name.
+        /// Gets a value indicating whether ssl.
         /// </summary>
-        /// <value>
-        /// The name.
-        /// </value>
-        string Name { get; }
-
-        /// <summary>
-        /// Gets the servers.
-        /// </summary>
-        /// <value>
-        /// The servers.
-        /// </value>
-        IEnumerable<IServer> Servers { get; }
+        bool Ssl { get; }
 
         #endregion
     }

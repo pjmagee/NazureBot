@@ -24,7 +24,7 @@ namespace NazureBot.Modules.Messages
 {
     #region Using directives
 
-    using NazureBot.Modules.Irc;
+    using NazureBot.Modules.Messaging;
 
     #endregion
 

@@ -27,7 +27,7 @@ namespace NazureBot.Core.Services.User
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using NazureBot.Modules.Irc;
+    using NazureBot.Modules.Messaging;
 
     #endregion
 

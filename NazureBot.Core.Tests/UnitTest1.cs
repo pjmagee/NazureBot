@@ -57,6 +57,4 @@ namespace NazureBot.Core.Tests
 
         #endregion
     }
-
-    
 }

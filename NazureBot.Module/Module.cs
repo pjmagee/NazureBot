@@ -28,7 +28,6 @@ namespace NazureBot.Modules
 
     using NazureBot.Modules.Commands;
     using NazureBot.Modules.Events;
-    using NazureBot.Modules.Irc;
 
     #endregion
 
@@ -47,9 +46,9 @@ namespace NazureBot.Modules
         /// The sender.
         /// </param>
         /// <param name="e">
-        /// The <see cref="ChannelMessageReceivedEventArgs"/> instance containing the event data.
+        /// The <see cref="PublicMessageReceivedEventArgs"/> instance containing the event data.
         /// </param>
-        public virtual void OnChannelMessageReceived(object sender, ChannelMessageReceivedEventArgs e)
+        public virtual void OnChannelMessageReceived(object sender, PublicMessageReceivedEventArgs e)
         {
         }
 
@@ -60,9 +59,9 @@ namespace NazureBot.Modules
         /// The sender.
         /// </param>
         /// <param name="e">
-        /// The <see cref="QueryMessageReceivedEventArgs"/> instance containing the event data.
+        /// The <see cref="PrivateMessageReceivedEventArgs"/> instance containing the event data.
         /// </param>
-        public virtual void OnQueryMessageReceived(object sender, QueryMessageReceivedEventArgs e)
+        public virtual void OnQueryMessageReceived(object sender, PrivateMessageReceivedEventArgs e)
         {
         }
 

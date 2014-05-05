@@ -30,18 +30,18 @@ namespace NazureBot.Irc.SmartIrc4Net
 
     using Meebey.SmartIrc4net;
 
-    using NazureBot.Core.Irc;
+    using NazureBot.Core.Messaging;
     using NazureBot.Core.Services.User;
     using NazureBot.Modules.Events;
-    using NazureBot.Modules.Irc;
     using NazureBot.Modules.Messages;
+    using NazureBot.Modules.Messaging;
 
     #endregion
 
     /// <summary>
     /// The smart irc client.
     /// </summary>
-    public class SmartIrcClient : AbstractIrcClient
+    public class SmartIrcClient : AbstractClient
     {
         #region Fields
 
@@ -85,13 +85,15 @@ namespace NazureBot.Irc.SmartIrc4Net
         /// </summary>
         private SmartIrcClient()
         {
-            this.ircClient = new IrcClient();
-            this.ircClient.AutoRejoinOnKick = true;
-            this.ircClient.AutoRelogin = true;
-            this.ircClient.AutoReconnect = true;
-            this.ircClient.AutoRetryLimit = 99;
-            this.ircClient.AutoRetryDelay = 30;
-            this.ircClient.AutoNickHandling = true;
+            this.ircClient = new IrcClient
+            {
+                AutoRejoinOnKick = true,
+                AutoRelogin = true,
+                AutoReconnect = true,
+                AutoRetryLimit = 99,
+                AutoRetryDelay = 30,
+                AutoNickHandling = true
+            };
         }
 
         #endregion
@@ -233,7 +235,7 @@ namespace NazureBot.Irc.SmartIrc4Net
         /// </param>
         private void OnChannelMessageReceived(object sender, IrcEventArgs e)
         {
-            // this.OnPublicMessageReceived(new ChannelMessageReceivedEventArgs());
+            // this.OnPublicMessageReceived(new PublicMessageReceivedEventArgs());
         }
 
         /// <summary>
@@ -263,7 +265,7 @@ namespace NazureBot.Irc.SmartIrc4Net
         /// </param>
         private void OnQueryMessageReceived(object sender, IrcEventArgs e)
         {
-            this.OnPrivateMessageReceived(new QueryMessageReceivedEventArgs());
+            this.OnPrivateMessageReceived(new PrivateMessageReceivedEventArgs());
         }
 
         /// <summary>

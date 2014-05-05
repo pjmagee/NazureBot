@@ -1,6 +1,6 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IChannel.cs" company="Patrick Magee">
-//   Copyright © 2013 Patrick Magee
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="INetwork.cs" company="Patrick Magee">
+//   Copyright � 2013 Patrick Magee
 //   
 //   This program is free software: you can redistribute it and/or modify it
 //   under the +terms of the GNU General Public License as published by 
@@ -16,27 +16,40 @@
 //   along with this program. If not, see http://www.gnu.org/licenses/.
 // </copyright>
 // <summary>
-//   The Channel interface.
+//   The Network interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace NazureBot.Modules.Irc
+namespace NazureBot.Modules.Messaging
 {
+    #region Using directives
+
+    using System.Collections.Generic;
+
+    #endregion
+
     /// <summary>
-    /// The Channel interface.
+    /// The Network interface.
     /// </summary>
-    
-    public interface IChannel
+    public interface INetwork
     {
         #region Public Properties
 
         /// <summary>
-        /// Gets the key.
+        /// Gets the channels.
         /// </summary>
         /// <value>
-        /// The key.
+        /// The channels.
         /// </value>
-        string Key { get; }
+        IEnumerable<IChannel> Channels { get; }
+
+        /// <summary>
+        /// Gets the identity.
+        /// </summary>
+        /// <value>
+        /// The identity.
+        /// </value>
+        IIdentity Identity { get; }
 
         /// <summary>
         /// Gets the name.
@@ -47,12 +60,12 @@ namespace NazureBot.Modules.Irc
         string Name { get; }
 
         /// <summary>
-        /// Gets the network.
+        /// Gets the servers.
         /// </summary>
         /// <value>
-        /// The network.
+        /// The servers.
         /// </value>
-        INetwork Network { get; }
+        IEnumerable<IServer> Servers { get; }
 
         #endregion
     }

@@ -35,7 +35,7 @@ namespace NazureBot.Core.Services.User
     using NazureBot.Core.Infrastructure.EF;
     using NazureBot.Core.Infrastructure.Entities;
     using NazureBot.Core.Services.Host;
-    using NazureBot.Modules.Irc;
+    using NazureBot.Modules.Messaging;
 
     using Ninject;
 

@@ -1,6 +1,6 @@
-// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IServer.cs" company="Patrick Magee">
-//   Copyright � 2013 Patrick Magee
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="IChannel.cs" company="Patrick Magee">
+//   Copyright © 2013 Patrick Magee
 //   
 //   This program is free software: you can redistribute it and/or modify it
 //   under the +terms of the GNU General Public License as published by 
@@ -16,39 +16,47 @@
 //   along with this program. If not, see http://www.gnu.org/licenses/.
 // </copyright>
 // <summary>
-//   The Server interface.
+//   The Channel interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace NazureBot.Modules.Irc
+namespace NazureBot.Modules.Messaging
 {
     /// <summary>
-    /// The Server interface.
+    /// The Channel interface.
     /// </summary>
-    public interface IServer
+    /// <remarks>
+    /// Used to identify a group of users in IRC and XMPP.
+    /// In IRC they are referred to as an Channel. 
+    /// In XMPP they are reffered to as a Room.
+    /// </remarks>
+    public interface IChannel
     {
         #region Public Properties
 
         /// <summary>
-        /// Gets the address.
+        /// Gets the key.
         /// </summary>
         /// <value>
-        /// The address.
+        /// The key.
         /// </value>
-        string Address { get; }
+        string Key { get; }
 
         /// <summary>
-        /// Gets the port.
+        /// Gets the name.
         /// </summary>
         /// <value>
-        /// The port.
+        /// The name.
         /// </value>
-        int Port { get; }
+        string Name { get; }
 
         /// <summary>
-        /// Gets a value indicating whether ssl.
+        /// Gets the network.
         /// </summary>
-        bool Ssl { get; }
+        /// <value>
+        /// The network.
+        /// </value>
+        INetwork Network { get; }
 
         #endregion
     }

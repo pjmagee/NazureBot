@@ -24,7 +24,7 @@ namespace NazureBot.Core.Factories
 {
     #region Using directives
 
-    using NazureBot.Modules.Irc;
+    using NazureBot.Modules.Messaging;
 
     #endregion
 
@@ -39,9 +39,9 @@ namespace NazureBot.Core.Factories
         /// Creates this instance.
         /// </summary>
         /// <returns>
-        /// The <see cref="IIrcClient"/>.
+        /// The <see cref="IChatClient"/>.
         /// </returns>
-        IIrcClient Create();
+        IChatClient Create();
 
         #endregion
     }

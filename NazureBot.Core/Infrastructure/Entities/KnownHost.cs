@@ -25,16 +25,17 @@ namespace NazureBot.Core.Infrastructure.Entities
     #region Using directives
 
     using System;
+    using System.Diagnostics;
     using System.Diagnostics.Contracts;
 
-    using NazureBot.Modules.Irc;
+    using NazureBot.Modules.Messaging;
 
     #endregion
 
     /// <summary>
     /// The known host.
     /// </summary>
-    public class KnownHost : IKnownHost, IEquatable<string>, IComparable<string>
+    public class KnownHost : IKnownHost, IEquatable<string>
     {
         #region Constructors and Destructors
 
@@ -57,6 +58,40 @@ namespace NazureBot.Core.Infrastructure.Entities
             Contract.Requires<ArgumentNullException>(hostmask != null, "hostmask");
 
             this.HostMask = hostmask;
+            this.TryParseIrcSegments();
+        }
+
+        /// <summary>
+        /// Tries to parse the hostmask as an IRC hostmask.
+        /// </summary>
+        private void TryParseIrcSegments()
+        {
+            try
+            {
+                Nick = this.HostMask.Split('!')[0];
+            }
+            catch (Exception)
+            {
+                Trace.TraceInformation("Failed to grab nick segment from {0}", HostMask);
+            }
+
+            try
+            {
+                this.Ident = this.HostMask.Split('!', '@')[1];
+            }
+            catch (Exception)
+            {
+                Trace.TraceInformation("Failed to grab ident segment from {0}", HostMask);
+            }
+
+            try
+            {
+                this.Host = HostMask.Split('!', '@')[2];
+            }
+            catch (Exception)
+            {
+                Trace.TraceInformation("Failed to grab host segment from {0}", HostMask);
+            }
         }
 
         /// <summary>
@@ -85,13 +120,7 @@ namespace NazureBot.Core.Infrastructure.Entities
         /// <value>
         /// The host.
         /// </value>
-        public string Host
-        {
-            get
-            {
-                return this.HostMask.Split('!', '@')[2];
-            }
-        }
+        public string Host { get; private set; }
 
         /// <summary>
         /// Gets or sets the host mask.
@@ -115,13 +144,7 @@ namespace NazureBot.Core.Infrastructure.Entities
         /// <value>
         /// The ident.
         /// </value>
-        public string Ident
-        {
-            get
-            {
-                return this.HostMask.Split('!', '@')[1];
-            }
-        }
+        public string Ident { get; private set; }
 
         /// <summary>
         /// Gets the nick.
@@ -129,13 +152,7 @@ namespace NazureBot.Core.Infrastructure.Entities
         /// <value>
         /// The nick.
         /// </value>
-        public string Nick
-        {
-            get
-            {
-                return this.HostMask.Split('!')[0];
-            }
-        }
+        public string Nick { get; private set; }
 
         /// <summary>
         /// Gets or sets the user.
@@ -152,20 +169,6 @@ namespace NazureBot.Core.Infrastructure.Entities
         #region Public Methods and Operators
 
         /// <summary>
-        /// The compare to.
-        /// </summary>
-        /// <param name="hostmask">
-        /// The hostmask.
-        /// </param>
-        /// <returns>
-        /// The <see cref="int"/>.
-        /// </returns>
-        public int CompareTo(string hostmask)
-        {
-            return string.Compare(this.HostMask, hostmask, StringComparison.Ordinal);
-        }
-
-        /// <summary>
         /// The equals.
         /// </summary>
         /// <param name="hostmask">
@@ -177,6 +180,17 @@ namespace NazureBot.Core.Infrastructure.Entities
         public bool Equals(string hostmask)
         {
             return this.HostMask.Equals(hostmask, StringComparison.OrdinalIgnoreCase);
+        }
+
+        /// <summary>
+        /// The to string.
+        /// </summary>
+        /// <returns>
+        /// The full unmodified hostmask as a <see cref="string"/>.
+        /// </returns>
+        public override string ToString()
+        {
+            return this.HostMask;
         }
 
         #endregion

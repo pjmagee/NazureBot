@@ -77,7 +77,7 @@ namespace NazureBot.UI
             if (RoleEnvironment.IsEmulated)
             {
                 kernel.Bind<INetworkService>().To<FakeNetworkService>().InRequestScope();
-                kernel.Bind<IUserService>().To<FakeUserService>().InRequestScope();
+                kernel.Bind<IUserService>().To<FakeIrcUserService>().InRequestScope();
             }
             else
             {

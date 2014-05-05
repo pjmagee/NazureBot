@@ -20,7 +20,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace NazureBot.Core.Irc
+namespace NazureBot.Core.Messaging
 {
     #region Using directives
 
@@ -29,8 +29,8 @@ namespace NazureBot.Core.Irc
     using System.Threading.Tasks;
 
     using NazureBot.Core.Factories;
-    using NazureBot.Modules.Irc;
     using NazureBot.Modules.Messages;
+    using NazureBot.Modules.Messaging;
 
     using Ninject;
 

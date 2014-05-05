@@ -38,13 +38,13 @@ namespace NazureBot.Service
     using NazureBot.Core.Factories;
     using NazureBot.Core.Infrastructure.EF;
     using NazureBot.Core.Infrastructure.Entities;
-    using NazureBot.Core.Irc;
+    using NazureBot.Core.Messaging;
     using NazureBot.Core.Services.Module;
     using NazureBot.Core.Services.Network;
     using NazureBot.Core.Services.User;
     using NazureBot.Irc.IrcDotNet;
     using NazureBot.Modules.Commands;
-    using NazureBot.Modules.Irc;
+    using NazureBot.Modules.Messaging;
 
     using Ninject;
     using Ninject.Extensions.Azure;
@@ -197,14 +197,14 @@ namespace NazureBot.Service
             if (RoleEnvironment.IsEmulated)
             {
                 kernel.Bind<INetworkService>().To<FakeNetworkService>().InThreadScope();
-                kernel.Bind<IUserService>().To<FakeUserService>().InThreadScope();
-                kernel.Bind<IIrcClient>().To<FakeIrcClient>().InTransientScope();
+                kernel.Bind<IUserService>().To<FakeIrcUserService>().InThreadScope();
+                kernel.Bind<IChatClient>().To<FakeIrcClient>().InTransientScope();
             }
             else
             {
                 kernel.Bind<INetworkService>().To<NetworkService>().InThreadScope();
                 kernel.Bind<IUserService>().To<UserService>().InThreadScope();
-                kernel.Bind<IIrcClient>().To<IrcDotNetClient>().InTransientScope();
+                kernel.Bind<IChatClient>().To<DotNetIrcClient>().InTransientScope();
             }
 
             kernel.Bind<ICommand>().To<Command>().InTransientScope();

@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ChannelMessageReceivedEventArgs.cs" company="Patrick Magee">
+// <copyright file="PrivateMessageReceivedEventArgs.cs" company="Patrick Magee">
 //   Copyright © 2013 Patrick Magee
 //   
 //   This program is free software: you can redistribute it and/or modify it
@@ -16,7 +16,7 @@
 //   along with this program. If not, see http://www.gnu.org/licenses/.
 // </copyright>
 // <summary>
-//   The channel message received event args.
+//   The query message received event args.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -26,29 +26,34 @@ namespace NazureBot.Modules.Events
 
     using System;
 
-    using NazureBot.Modules.Irc;
     using NazureBot.Modules.Messages;
+    using NazureBot.Modules.Messaging;
 
     #endregion
 
     /// <summary>
-    /// The channel message received event args.
+    /// The query message received event args.
     /// </summary>
-    public class ChannelMessageReceivedEventArgs : EventArgs
+    public class PrivateMessageReceivedEventArgs : EventArgs
     {
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ChannelMessageReceivedEventArgs"/> class.
+        /// Initializes a new instance of the <see cref="PrivateMessageReceivedEventArgs"/> class.
+        /// </summary>
+        public PrivateMessageReceivedEventArgs()
+        {
+            
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PrivateMessageReceivedEventArgs"/> class.
         /// </summary>
         /// <param name="user">
         /// The user.
         /// </param>
         /// <param name="server">
         /// The server.
-        /// </param>
-        /// <param name="channel">
-        /// The channel.
         /// </param>
         /// <param name="format">
         /// The format.
@@ -59,11 +64,10 @@ namespace NazureBot.Modules.Events
         /// <param name="message">
         /// The message.
         /// </param>
-        public ChannelMessageReceivedEventArgs(IUser user, IServer server, IChannel channel, MessageFormat format, MessageBroadcast broadcast, string message)
+        public PrivateMessageReceivedEventArgs(IUser user, IServer server, MessageFormat format, MessageBroadcast broadcast, string message)
         {
             this.User = user;
             this.Server = server;
-            this.Channel = channel;
             this.Format = format;
             this.Broadcast = broadcast;
             this.Message = message;
@@ -74,52 +78,29 @@ namespace NazureBot.Modules.Events
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets the broadcast.
+        /// Gets the broadcast.
         /// </summary>
-        /// <value>
-        /// The broadcast.
-        /// </value>
-        public MessageBroadcast Broadcast { get; set; }
+        public MessageBroadcast Broadcast { get; private set; }
 
         /// <summary>
-        /// Gets or sets the channel.
+        /// Gets the format.
         /// </summary>
-        /// <value>
-        /// The channel.
-        /// </value>
-        public IChannel Channel { get; set; }
+        public MessageFormat Format { get; private set; }
 
         /// <summary>
-        /// Gets or sets the format.
+        /// Gets the message.
         /// </summary>
-        /// <value>
-        /// The format.
-        /// </value>
-        public MessageFormat Format { get; set; }
+        public string Message { get; private set; }
 
         /// <summary>
-        /// Gets or sets the message.
+        /// Gets the server.
         /// </summary>
-        /// <value>
-        /// The message.
-        /// </value>
-        public string Message { get; set; }
+        public IServer Server { get; private set; }
 
         /// <summary>
-        /// Gets or sets the server.
+        /// Gets the user.
         /// </summary>
-        /// <value>
-        /// The server.
-        /// </value>
-        public IServer Server { get; set; }
-
-        /// <summary>
-        /// Gets or sets the user.
-        /// </summary>
-        /// <value>
-        /// The user.
-        /// </value>
-        public IUser User { get; set; }
+        public IUser User { get; private set; }
 
         #endregion
     }

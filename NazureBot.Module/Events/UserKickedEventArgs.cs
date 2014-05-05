@@ -26,7 +26,7 @@ namespace NazureBot.Modules.Events
 
     using System;
 
-    using NazureBot.Modules.Irc;
+    using NazureBot.Modules.Messaging;
 
     #endregion
 

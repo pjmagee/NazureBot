@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ServiceDefinition name="NazureBot" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2013-10.2.2">
+<ServiceDefinition name="NazureBot" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2014-01.2.3">
   <WebRole name="NazureBot.UI" vmsize="Small">
     <Sites>
       <Site name="Web">
@@ -14,8 +14,7 @@
     <Imports>
       <Import moduleName="Diagnostics" />
     </Imports>
-    <LocalResources>
-    </LocalResources>
+    <LocalResources></LocalResources>
     <ConfigurationSettings>
       <Setting name="Microsoft.ServiceBus.ConnectionString" />
     </ConfigurationSettings>

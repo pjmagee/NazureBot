@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IrcDotNetClient.cs" company="Patrick Magee">
+// <copyright file="DotNetIrcClient.cs" company="Patrick Magee">
 //   Copyright © 2013 Patrick Magee
 //   
 //   This program is free software: you can redistribute it and/or modify it
@@ -34,18 +34,18 @@ namespace NazureBot.Irc.IrcDotNet
 
     using global::IrcDotNet.Ctcp;
 
-    using NazureBot.Core.Irc;
+    using NazureBot.Core.Messaging;
     using NazureBot.Core.Services.User;
     using NazureBot.Modules.Events;
-    using NazureBot.Modules.Irc;
     using NazureBot.Modules.Messages;
+    using NazureBot.Modules.Messaging;
 
     #endregion
 
     /// <summary>
     /// The ircdotnet third party client library implementation.
     /// </summary>
-    public class IrcDotNetClient : AbstractIrcClient
+    public class DotNetIrcClient : AbstractClient
     {
         #region Fields
 
@@ -79,12 +79,12 @@ namespace NazureBot.Irc.IrcDotNet
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="IrcDotNetClient"/> class.
+        /// Initializes a new instance of the <see cref="DotNetIrcClient"/> class.
         /// </summary>
         /// <param name="userService">
         /// The user service.
         /// </param>
-        public IrcDotNetClient(IUserService userService) : this()
+        public DotNetIrcClient(IUserService userService) : this()
         {
             Contract.Requires<ArgumentNullException>(userService != null, "userService");
 
@@ -92,9 +92,9 @@ namespace NazureBot.Irc.IrcDotNet
         }
 
         /// <summary>
-        /// Prevents a default instance of the <see cref="IrcDotNetClient"/> class from being created.
+        /// Prevents a default instance of the <see cref="DotNetIrcClient"/> class from being created.
         /// </summary>
-        private IrcDotNetClient()
+        private DotNetIrcClient()
         {
             this.ircClient = new IrcClient();
             this.ctcpClient = new CtcpClient(this.ircClient);
@@ -107,7 +107,7 @@ namespace NazureBot.Irc.IrcDotNet
         /// <summary>
         /// Occurs when [message received].
         /// </summary>
-        public event EventHandler<ChannelMessageReceivedEventArgs> MessageReceived;
+        public event EventHandler<PublicMessageReceivedEventArgs> MessageReceived;
 
         #endregion
 
@@ -276,7 +276,7 @@ namespace NazureBot.Irc.IrcDotNet
             {
                 this.userService.GetOrCreateByHostmaskAsync(user.HostName).ContinueWith(task =>
                     {
-                        var eventArgs = new QueryMessageReceivedEventArgs(task.Result, this.server, MessageFormat.Message, MessageBroadcast.Private, e.Text);
+                        var eventArgs = new PrivateMessageReceivedEventArgs(task.Result, this.server, MessageFormat.Message, MessageBroadcast.Private, e.Text);
                         this.OnPrivateMessageReceived(eventArgs);
                     });
             }

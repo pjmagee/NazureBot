@@ -20,11 +20,27 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace NazureBot.Modules.Irc
+namespace NazureBot.Modules.Messaging
 {
     /// <summary>
     /// The KnownHost interface.
     /// </summary>
+    /// <remarks>
+    /// The known host is a set of properties that makes up an individual users identity that can be
+    /// recognised by the bot. Generally made up of three parts, but depends on the chat service. 
+    /// In irc, a users ident can be found made up of their host name, an ident/username value and their given nickname.
+    /// <example>
+    ///     IRC:
+    ///     The nick is the first part of the string split on !: nick
+    ///     The username is the second part of the string: user.name 
+    ///     The host is the last part of the string: address.com
+    ///     ~nick!user.name@address.com
+    /// </example>
+    /// <example>
+    ///     XMPP:
+    ///     The nick/ident/host can be put together to give the full username of the users known host.
+    /// </example> 
+    /// </remarks>
     public interface IKnownHost
     {
         #region Public Properties

@@ -20,7 +20,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace NazureBot.Modules.Irc
+namespace NazureBot.Modules.Messaging
 {
     #region Using directives
 
@@ -31,6 +31,10 @@ namespace NazureBot.Modules.Irc
     /// <summary>
     /// The Identity interface.
     /// </summary>
+    /// <remarks>
+    /// Used as a way for the bot to give an identity when registering with external messaging services. 
+    /// This enables users to easily identify the bot.
+    /// </remarks>
     public interface IIdentity
     {
         #region Public Properties

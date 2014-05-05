@@ -20,7 +20,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace NazureBot.Core.Irc
+namespace NazureBot.Core.Messaging
 {
     #region Using directives
 
@@ -35,8 +35,8 @@ namespace NazureBot.Core.Irc
     using NazureBot.Modules;
     using NazureBot.Modules.Commands;
     using NazureBot.Modules.Events;
-    using NazureBot.Modules.Irc;
     using NazureBot.Modules.Messages;
+    using NazureBot.Modules.Messaging;
 
     using Ninject;
 
@@ -67,7 +67,7 @@ namespace NazureBot.Core.Irc
         /// <summary>
         /// The client.
         /// </summary>
-        private IIrcClient client;
+        private IChatClient client;
 
         /// <summary>
         /// The network
@@ -134,7 +134,7 @@ namespace NazureBot.Core.Irc
         /// <value>
         /// The client.
         /// </value>
-        public IIrcClient Client
+        public IChatClient Client
         {
             get
             {
@@ -288,9 +288,9 @@ namespace NazureBot.Core.Irc
         /// The sender.
         /// </param>
         /// <param name="e">
-        /// The <see cref="QueryMessageReceivedEventArgs"/> instance containing the event data.
+        /// The <see cref="PrivateMessageReceivedEventArgs"/> instance containing the event data.
         /// </param>
-        private async void OnPrivateMessageReceived(object sender, QueryMessageReceivedEventArgs e)
+        private async void OnPrivateMessageReceived(object sender, PrivateMessageReceivedEventArgs e)
         {
             await Task.Run(() =>
                 {
@@ -318,9 +318,9 @@ namespace NazureBot.Core.Irc
         /// The sender.
         /// </param>
         /// <param name="e">
-        /// The <see cref="ChannelMessageReceivedEventArgs"/> instance containing the event data.
+        /// The <see cref="PublicMessageReceivedEventArgs"/> instance containing the event data.
         /// </param>
-        private async void OnPublicMessageReceived(object sender, ChannelMessageReceivedEventArgs e)
+        private async void OnPublicMessageReceived(object sender, PublicMessageReceivedEventArgs e)
         {
             await Task.Run(async () =>
                 {
@@ -328,7 +328,7 @@ namespace NazureBot.Core.Irc
                     {
                         if (e.Message.StartsWith(command.Trigger))
                         {
-                            IRequest request = this.requestFactory.Create(e.User, e.Server, e.Format, e.Broadcast, e.Message, this);
+                            IRequest request = this.requestFactory.Create(e.FromUser, e.Server, e.Format, e.Broadcast, e.Message, this);
                             await command.Handler(request);
                         }
                     }

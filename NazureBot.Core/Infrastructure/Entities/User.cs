@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="User.cs" company="Patrick Magee">
+// <copyright file="fromUser.cs" company="Patrick Magee">
 //   Copyright © 2013 Patrick Magee
 //   
 //   This program is free software: you can redistribute it and/or modify it
@@ -28,7 +28,7 @@ namespace NazureBot.Core.Infrastructure.Entities
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
 
-    using NazureBot.Modules.Irc;
+    using NazureBot.Modules.Messaging;
     using NazureBot.Modules.Security;
 
     #endregion

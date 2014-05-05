@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FakeUserService.cs" company="Patrick Magee">
+// <copyright file="FakeIrcUserService.cs" company="Patrick Magee">
 //   Copyright © 2013 Patrick Magee
 //   
 //   This program is free software: you can redistribute it and/or modify it
@@ -28,14 +28,14 @@ namespace NazureBot.Core.Services.User
     using System.Threading.Tasks;
 
     using NazureBot.Core.Infrastructure.Entities;
-    using NazureBot.Modules.Irc;
+    using NazureBot.Modules.Messaging;
 
     #endregion
 
     /// <summary>
     /// The fake user service used for producing fake irc users.
     /// </summary>
-    public class FakeUserService : IUserService
+    public class FakeIrcUserService : IUserService
     {
         #region Public Methods and Operators
 

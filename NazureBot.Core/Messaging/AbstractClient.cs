@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="AbstractIrcClient.cs" company="Patrick Magee">
+// <copyright file="AbstractClient.cs" company="Patrick Magee">
 //   Copyright © 2013 Patrick Magee
 //   
 //   This program is free software: you can redistribute it and/or modify it
@@ -20,7 +20,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace NazureBot.Core.Irc
+namespace NazureBot.Core.Messaging
 {
     #region Using directives
 
@@ -28,27 +28,27 @@ namespace NazureBot.Core.Irc
     using System.Threading.Tasks;
 
     using NazureBot.Modules.Events;
-    using NazureBot.Modules.Irc;
     using NazureBot.Modules.Messages;
+    using NazureBot.Modules.Messaging;
 
     #endregion
 
     /// <summary>
     /// The abstract irc client.
     /// </summary>
-    public abstract class AbstractIrcClient : IIrcClient
+    public abstract class AbstractClient : IChatClient
     {
         #region Public Events
 
         /// <summary>
         /// Occurs when [private message received].
         /// </summary>
-        public event EventHandler<QueryMessageReceivedEventArgs> PrivateMessageReceived;
+        public event EventHandler<PrivateMessageReceivedEventArgs> PrivateMessageReceived;
 
         /// <summary>
         /// Occurs when [public message received].
         /// </summary>
-        public event EventHandler<ChannelMessageReceivedEventArgs> PublicMessageReceived;
+        public event EventHandler<PublicMessageReceivedEventArgs> PublicMessageReceived;
 
         /// <summary>
         /// Occurs when [topic changed].
@@ -143,11 +143,11 @@ namespace NazureBot.Core.Irc
         /// Raises the <see cref="E:PrivateMessageReceived"/> event.
         /// </summary>
         /// <param name="e">
-        /// The <see cref="QueryMessageReceivedEventArgs"/> instance containing the event data.
+        /// The <see cref="PrivateMessageReceivedEventArgs"/> instance containing the event data.
         /// </param>
-        protected virtual void OnPrivateMessageReceived(QueryMessageReceivedEventArgs e)
+        protected virtual void OnPrivateMessageReceived(PrivateMessageReceivedEventArgs e)
         {
-            EventHandler<QueryMessageReceivedEventArgs> handler = this.PrivateMessageReceived;
+            EventHandler<PrivateMessageReceivedEventArgs> handler = this.PrivateMessageReceived;
 
             if (handler != null)
             {
@@ -159,11 +159,11 @@ namespace NazureBot.Core.Irc
         /// Raises the <see cref="E:PublicMessageReceived"/> event.
         /// </summary>
         /// <param name="e">
-        /// The <see cref="ChannelMessageReceivedEventArgs"/> instance containing the event data.
+        /// The <see cref="PublicMessageReceivedEventArgs"/> instance containing the event data.
         /// </param>
-        protected virtual void OnPublicMessageReceived(ChannelMessageReceivedEventArgs e)
+        protected virtual void OnPublicMessageReceived(PublicMessageReceivedEventArgs e)
         {
-            EventHandler<ChannelMessageReceivedEventArgs> handler = this.PublicMessageReceived;
+            EventHandler<PublicMessageReceivedEventArgs> handler = this.PublicMessageReceived;
 
             if (handler != null)
             {

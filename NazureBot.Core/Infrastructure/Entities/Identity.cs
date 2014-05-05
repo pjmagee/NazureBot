@@ -28,7 +28,7 @@ namespace NazureBot.Core.Infrastructure.Entities
     using System.Collections.Generic;
     using System.Linq;
 
-    using NazureBot.Modules.Irc;
+    using NazureBot.Modules.Messaging;
 
     #endregion
 

@@ -155,7 +155,7 @@ namespace NazureBot.UI.Controllers
             }
             else
             {
-                // User does not have a password so remove any validation errors caused by a missing OldPassword field
+                // fromUser does not have a password so remove any validation errors caused by a missing OldPassword field
                 ModelState state = ModelState["OldPassword"];
                 if (state != null)
                 {

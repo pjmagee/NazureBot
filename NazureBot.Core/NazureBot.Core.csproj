@@ -84,12 +84,12 @@
     <Compile Include="Factories\IRegistrationServiceFactory.cs" />
     <Compile Include="Factories\IRequestFactory.cs" />
     <Compile Include="Factories\IResponseFactory.cs" />
-    <Compile Include="Irc\AbstractIrcClient.cs" />
+    <Compile Include="Messaging\AbstractClient.cs" />
     <Compile Include="Bot.cs" />
     <Compile Include="BotStatus.cs" />
     <Compile Include="Events\BotStatusChangedEventArgs.cs" />
     <Compile Include="IBot.cs" />
-    <Compile Include="Irc\Connection.cs" />
+    <Compile Include="Messaging\Connection.cs" />
     <Compile Include="Infrastructure\Entities\Channel.cs" />
     <Compile Include="Infrastructure\Entities\Identity.cs" />
     <Compile Include="Infrastructure\Entities\KnownHost.cs" />
@@ -97,18 +97,19 @@
     <Compile Include="Infrastructure\Entities\Server.cs" />
     <Compile Include="Infrastructure\Entities\User.cs" />
     <Compile Include="Infrastructure\EF\DatabaseContext.cs" />
-    <Compile Include="Irc\FakeIrcClient.cs" />
+    <Compile Include="Messaging\FakeIrcClient.cs" />
     <Compile Include="Services\Module\AzureStorageCatalog.cs" />
     <Compile Include="Services\Module\IModuleService.cs" />
     <Compile Include="Services\Module\ModuleService.cs" />
     <Compile Include="Services\Module\RegistrationService.cs" />
-    <Compile Include="Irc\Request.cs" />
+    <Compile Include="Messaging\Request.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Host\DefaultHostMatcher.cs" />
     <Compile Include="Services\Host\IHostMatcher.cs" />
     <Compile Include="Services\Network\FakeNetworkService.cs" />
     <Compile Include="Services\Network\INetworkService.cs" />
-    <Compile Include="Services\User\FakeUserService.cs" />
+    <Compile Include="Services\User\FakeIrcUserService.cs" />
+    <Compile Include="Services\User\FakeXmppUserServer.cs" />
     <Compile Include="Services\User\IUserService.cs" />
     <Compile Include="Services\Network\NetworkService.cs" />
     <Compile Include="Services\User\UserService.cs" />
@@ -123,6 +124,7 @@
       <Name>NazureBot.Modules</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

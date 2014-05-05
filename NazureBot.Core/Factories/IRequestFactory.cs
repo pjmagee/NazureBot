@@ -24,8 +24,8 @@ namespace NazureBot.Core.Factories
 {
     #region Using directives
 
-    using NazureBot.Modules.Irc;
     using NazureBot.Modules.Messages;
+    using NazureBot.Modules.Messaging;
 
     #endregion
 

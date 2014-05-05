@@ -41,7 +41,7 @@
 
             var namespaceManager = NamespaceManager.CreateFromConnectionString(connectionString);
 
-            namespaceManager.CreateSubscription()
+            // namespaceManager.CreateSubscription();
 
             if (!namespaceManager.QueueExists(QueueName))
             {

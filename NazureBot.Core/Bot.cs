@@ -34,7 +34,7 @@ namespace NazureBot.Core
     using NazureBot.Core.Services.Host;
     using NazureBot.Core.Services.Module;
     using NazureBot.Core.Services.Network;
-    using NazureBot.Modules.Irc;
+    using NazureBot.Modules.Messaging;
 
     using Ninject;
 

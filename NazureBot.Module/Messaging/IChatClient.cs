@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IIrcClient.cs" company="Patrick Magee">
+// <copyright file="IChatClient.cs" company="Patrick Magee">
 //   Copyright © 2013 Patrick Magee
 //   
 //   This program is free software: you can redistribute it and/or modify it
@@ -20,7 +20,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace NazureBot.Modules.Irc
+namespace NazureBot.Modules.Messaging
 {
     #region Using directives
 
@@ -33,21 +33,21 @@ namespace NazureBot.Modules.Irc
     #endregion
 
     /// <summary>
-    /// The IrcClient interface.
+    /// The IChatClient interface.
     /// </summary>
-    public interface IIrcClient
+    public interface IChatClient
     {
         #region Public Events
 
         /// <summary>
         /// Occurs when [private message received].
         /// </summary>
-        event EventHandler<QueryMessageReceivedEventArgs> PrivateMessageReceived;
+        event EventHandler<PrivateMessageReceivedEventArgs> PrivateMessageReceived;
 
         /// <summary>
         /// Occurs when [public message received].
         /// </summary>
-        event EventHandler<ChannelMessageReceivedEventArgs> PublicMessageReceived;
+        event EventHandler<PublicMessageReceivedEventArgs> PublicMessageReceived;
 
         /// <summary>
         /// Occurs when [topic changed].

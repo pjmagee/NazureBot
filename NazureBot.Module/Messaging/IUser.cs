@@ -16,11 +16,11 @@
 //   along with this program. If not, see http://www.gnu.org/licenses/.
 // </copyright>
 // <summary>
-//   The User interface.
+//   The fromUser interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace NazureBot.Modules.Irc
+namespace NazureBot.Modules.Messaging
 {
     #region Using directives
 
@@ -29,7 +29,7 @@ namespace NazureBot.Modules.Irc
     #endregion
 
     /// <summary>
-    /// The User interface.
+    /// The fromUser interface.
     /// </summary>
     public interface IUser
     {

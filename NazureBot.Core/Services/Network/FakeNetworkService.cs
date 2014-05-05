@@ -29,7 +29,7 @@ namespace NazureBot.Core.Services.Network
     using System.Threading.Tasks;
 
     using NazureBot.Core.Infrastructure.Entities;
-    using NazureBot.Modules.Irc;
+    using NazureBot.Modules.Messaging;
 
     #endregion
 
