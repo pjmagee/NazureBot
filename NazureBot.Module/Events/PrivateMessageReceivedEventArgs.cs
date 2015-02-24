@@ -22,48 +22,18 @@
 
 namespace NazureBot.Modules.Events
 {
-    #region Using directives
-
     using System;
 
     using NazureBot.Modules.Messages;
     using NazureBot.Modules.Messaging;
 
-    #endregion
-
-    /// <summary>
-    /// The query message received event args.
-    /// </summary>
     public class PrivateMessageReceivedEventArgs : EventArgs
     {
-        #region Constructors and Destructors
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PrivateMessageReceivedEventArgs"/> class.
-        /// </summary>
         public PrivateMessageReceivedEventArgs()
         {
             
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PrivateMessageReceivedEventArgs"/> class.
-        /// </summary>
-        /// <param name="user">
-        /// The user.
-        /// </param>
-        /// <param name="server">
-        /// The server.
-        /// </param>
-        /// <param name="format">
-        /// The format.
-        /// </param>
-        /// <param name="broadcast">
-        /// The broadcast.
-        /// </param>
-        /// <param name="message">
-        /// The message.
-        /// </param>
         public PrivateMessageReceivedEventArgs(IUser user, IServer server, MessageFormat format, MessageBroadcast broadcast, string message)
         {
             this.User = user;
@@ -73,35 +43,10 @@ namespace NazureBot.Modules.Events
             this.Message = message;
         }
 
-        #endregion
-
-        #region Public Properties
-
-        /// <summary>
-        /// Gets the broadcast.
-        /// </summary>
         public MessageBroadcast Broadcast { get; private set; }
-
-        /// <summary>
-        /// Gets the format.
-        /// </summary>
         public MessageFormat Format { get; private set; }
-
-        /// <summary>
-        /// Gets the message.
-        /// </summary>
         public string Message { get; private set; }
-
-        /// <summary>
-        /// Gets the server.
-        /// </summary>
         public IServer Server { get; private set; }
-
-        /// <summary>
-        /// Gets the user.
-        /// </summary>
         public IUser User { get; private set; }
-
-        #endregion
     }
 }

@@ -22,44 +22,14 @@
 
 namespace NazureBot.Modules.Messages
 {
-    #region Using directives
-
     using System.Collections.Generic;
 
-    #endregion
-
-    /// <summary>
-    /// The response.
-    /// </summary>
     public class Response : IResponse
     {
-        #region Public Properties
-
-        /// <summary>
-        /// Gets or sets the broadcast.
-        /// </summary>
         public MessageBroadcast Broadcast { get; set; }
-
-        /// <summary>
-        /// Gets or sets the format.
-        /// </summary>
         public MessageFormat Format { get; set; }
-
-        /// <summary>
-        /// Gets or sets the message.
-        /// </summary>
         public string Message { get; set; }
-
-        /// <summary>
-        /// Gets or sets the request.
-        /// </summary>
         public IRequest Request { get; set; }
-
-        /// <summary>
-        /// Gets or sets the targets.
-        /// </summary>
         public IEnumerable<string> Targets { get; set; }
-
-        #endregion
     }
 }

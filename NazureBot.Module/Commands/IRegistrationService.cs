@@ -22,57 +22,15 @@
 
 namespace NazureBot.Modules.Commands
 {
-    #region Using directives
-
     using System.Collections.Generic;
 
-    #endregion
-
-    /// <summary>
-    /// The RegistrationService interface.
-    /// </summary>
     public interface IRegistrationService
     {
-        #region Public Properties
-
-        /// <summary>
-        /// Gets the registered commands.
-        /// </summary>
         IEnumerable<ICommand> RegisteredCommands { get; }
 
-        #endregion
-
-        #region Public Methods and Operators
-
-        /// <summary>
-        /// The clear.
-        /// </summary>
         void Clear();
-
-        /// <summary>
-        /// The register.
-        /// </summary>
-        /// <param name="command">
-        /// The command.
-        /// </param>
         void Register(ICommand command);
-
-        /// <summary>
-        /// The register.
-        /// </summary>
-        /// <param name="commands">
-        /// The commands.
-        /// </param>
         void Register(IEnumerable<ICommand> commands);
-
-        /// <summary>
-        /// The register.
-        /// </summary>
-        /// <param name="commands">
-        /// The commands.
-        /// </param>
         void Register(params ICommand[] commands);
-
-        #endregion
     }
 }

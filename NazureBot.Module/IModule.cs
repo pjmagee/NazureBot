@@ -22,27 +22,10 @@
 
 namespace NazureBot.Modules
 {
-    #region Using directives
-
     using NazureBot.Modules.Commands;
 
-    #endregion
-
-    /// <summary>
-    /// The Module interface.
-    /// </summary>
     internal interface IModule
     {
-        #region Public Methods and Operators
-
-        /// <summary>
-        /// Registers the commands.
-        /// </summary>
-        /// <param name="registrationService">
-        /// The registration service.
-        /// </param>
         void RegisterCommands(IRegistrationService registrationService);
-
-        #endregion
     }
 }

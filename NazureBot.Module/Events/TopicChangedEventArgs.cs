@@ -22,15 +22,8 @@
 
 namespace NazureBot.Modules.Events
 {
-    #region Using directives
-
     using System;
 
-    #endregion
-
-    /// <summary>
-    /// The topic changed event args.
-    /// </summary>
     public class TopicChangedEventArgs : EventArgs
     {
     }

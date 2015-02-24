@@ -22,8 +22,6 @@
 
 namespace NazureBot.Irc.IrcDotNet
 {
-    #region Using directives
-
     using System;
     using System.Diagnostics.Contracts;
     using System.Linq;
@@ -31,7 +29,6 @@ namespace NazureBot.Irc.IrcDotNet
     using System.Threading.Tasks;
 
     using global::IrcDotNet;
-
     using global::IrcDotNet.Ctcp;
 
     using NazureBot.Core.Messaging;
@@ -40,50 +37,18 @@ namespace NazureBot.Irc.IrcDotNet
     using NazureBot.Modules.Messages;
     using NazureBot.Modules.Messaging;
 
-    #endregion
-
     /// <summary>
     /// The ircdotnet third party client library implementation.
     /// </summary>
     public class DotNetIrcClient : AbstractClient
     {
-        #region Fields
-
-        /// <summary>
-        /// The irc client
-        /// </summary>
         private readonly IrcClient ircClient;
-
-        /// <summary>
-        /// The user service
-        /// </summary>
         private readonly IUserService userService;
 
-        /// <summary>
-        /// The CTCP client
-        /// </summary>
         private CtcpClient ctcpClient;
-
-        /// <summary>
-        /// The network
-        /// </summary>
         private INetwork network;
-
-        /// <summary>
-        /// The server
-        /// </summary>
         private IServer server;
 
-        #endregion
-
-        #region Constructors and Destructors
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DotNetIrcClient"/> class.
-        /// </summary>
-        /// <param name="userService">
-        /// The user service.
-        /// </param>
         public DotNetIrcClient(IUserService userService) : this()
         {
             Contract.Requires<ArgumentNullException>(userService != null, "userService");
@@ -91,34 +56,14 @@ namespace NazureBot.Irc.IrcDotNet
             this.userService = userService;
         }
 
-        /// <summary>
-        /// Prevents a default instance of the <see cref="DotNetIrcClient"/> class from being created.
-        /// </summary>
         private DotNetIrcClient()
         {
             this.ircClient = new IrcClient();
             this.ctcpClient = new CtcpClient(this.ircClient);
         }
 
-        #endregion
-
-        #region Public Events
-
-        /// <summary>
-        /// Occurs when [message received].
-        /// </summary>
         public event EventHandler<PublicMessageReceivedEventArgs> MessageReceived;
 
-        #endregion
-
-        #region Public Properties
-
-        /// <summary>
-        /// Gets the description.
-        /// </summary>
-        /// <value>
-        /// The description.
-        /// </value>
         public override string Description
         {
             get
@@ -127,12 +72,6 @@ namespace NazureBot.Irc.IrcDotNet
             }
         }
 
-        /// <summary>
-        /// Gets a value indicating whether [is connected].
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if [is connected]; otherwise, <c>false</c>.
-        /// </value>
         public override bool IsConnected
         {
             get
@@ -141,31 +80,8 @@ namespace NazureBot.Irc.IrcDotNet
             }
         }
 
-        #endregion
-
-        #region Properties
-
-        /// <summary>
-        /// Gets or sets the registration information.
-        /// </summary>
-        /// <value>
-        /// The registration information.
-        /// </value>
         private IrcUserRegistrationInfo RegistrationInfo { get; set; }
 
-        #endregion
-
-        #region Public Methods and Operators
-
-        /// <summary>
-        /// Connects the specified network.
-        /// </summary>
-        /// <param name="network">
-        /// The network.
-        /// </param>
-        /// <returns>
-        /// The <see cref="Task"/>.
-        /// </returns>
         public override async Task Connect(INetwork network)
         {
             await Task.Run(() =>
@@ -179,15 +95,6 @@ namespace NazureBot.Irc.IrcDotNet
                  });
         }
 
-        /// <summary>
-        /// Connects the specified server.
-        /// </summary>
-        /// <param name="server">
-        /// The server.
-        /// </param>
-        /// <returns>
-        /// The <see cref="Task"/>.
-        /// </returns>
         public override async Task Connect(IServer server)
         {
             await Task.Run(() =>
@@ -200,26 +107,11 @@ namespace NazureBot.Irc.IrcDotNet
                     });
         }
 
-        /// <summary>
-        /// Disconnects this instance.
-        /// </summary>
-        /// <returns>
-        /// The <see cref="Task" />.
-        /// </returns>
         public override async Task Disconnect()
         {
             await Task.Run(() => this.ircClient.Disconnect());
         }
 
-        /// <summary>
-        /// Sends the response asynchronous.
-        /// </summary>
-        /// <param name="response">
-        /// The response.
-        /// </param>
-        /// <returns>
-        /// The <see cref="Task"/>.
-        /// </returns>
         public override async Task SendResponseAsync(IResponse response)
         {
             Contract.Requires<ArgumentNullException>(response != null, "response");
@@ -227,13 +119,6 @@ namespace NazureBot.Irc.IrcDotNet
             await Task.Run(() => Console.WriteLine("sending message: {0}", response.Message));
         }
 
-        #endregion
-
-        #region Methods
-
-        /// <summary>
-        /// Creates the registration information.
-        /// </summary>
         private void CreateRegistrationInfo()
         {
             this.RegistrationInfo = new IrcUserRegistrationInfo 
@@ -245,29 +130,11 @@ namespace NazureBot.Irc.IrcDotNet
             };
         }
 
-        /// <summary>
-        /// Called when [connected].
-        /// </summary>
-        /// <param name="sender">
-        /// The sender.
-        /// </param>
-        /// <param name="e">
-        /// The <see cref="EventArgs"/> instance containing the event data.
-        /// </param>
         private void OnConnected(object sender, EventArgs e)
         {
             this.ircClient.LocalUser.MessageReceived += this.OnMessageReceived;
         }
 
-        /// <summary>
-        /// Called when [message received].
-        /// </summary>
-        /// <param name="sender">
-        /// The sender.
-        /// </param>
-        /// <param name="e">
-        /// The <see cref="IrcMessageEventArgs"/> instance containing the event data.
-        /// </param>
         private void OnMessageReceived(object sender, IrcMessageEventArgs e)
         {
             var user = sender as IrcUser;
@@ -281,7 +148,5 @@ namespace NazureBot.Irc.IrcDotNet
                     });
             }
         }
-
-        #endregion
     }
 }

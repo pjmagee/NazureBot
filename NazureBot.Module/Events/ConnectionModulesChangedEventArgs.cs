@@ -22,51 +22,21 @@
 
 namespace NazureBot.Modules.Events
 {
-    #region Using directives
-
     using System;
     using System.Collections.Generic;
 
-    #endregion
-
-    /// <summary>
-    /// The connection modules changed event args.
-    /// </summary>
     public class ConnectionModulesChangedEventArgs : EventArgs
     {
-        #region Constructors and Destructors
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ConnectionModulesChangedEventArgs"/> class.
-        /// </summary>
-        /// <param name="modules">
-        /// The modules.
-        /// </param>
         public ConnectionModulesChangedEventArgs(IEnumerable<Module> modules)
         {
             this.Modules = modules;
         }
 
-        /// <summary>
-        /// Prevents a default instance of the <see cref="ConnectionModulesChangedEventArgs"/> class from being created.
-        /// </summary>
         private ConnectionModulesChangedEventArgs()
         {
 
         }
 
-        #endregion
-
-        #region Public Properties
-
-        /// <summary>
-        /// Gets the modules.
-        /// </summary>
-        /// <value>
-        /// The modules.
-        /// </value>
         public IEnumerable<Module> Modules { get; private set; }
-
-        #endregion
     }
 }

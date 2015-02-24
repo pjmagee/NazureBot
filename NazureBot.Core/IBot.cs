@@ -22,52 +22,17 @@
 
 namespace NazureBot.Core
 {
-    #region Using directives
-
     using System;
-
     using NazureBot.Core.Events;
 
-    #endregion
-
-    /// <summary>
-    /// The Bot interface.
-    /// </summary>
     public interface IBot
     {
-        #region Public Events
-
-        /// <summary>
-        /// Occurs when [status changed].
-        /// </summary>
         event EventHandler<BotStatusChangedEventArgs> StatusChanged;
 
-        #endregion
-
-        #region Public Properties
-
-        /// <summary>
-        /// Gets the status.
-        /// </summary>
-        /// <value>
-        /// The status.
-        /// </value>
         BotStatus Status { get; }
 
-        #endregion
-
-        #region Public Methods and Operators
-
-        /// <summary>
-        /// Starts this instance. Called during activation.
-        /// </summary>
         void Start();
 
-        /// <summary>
-        /// Stops this instance. Called during deactivation.
-        /// </summary>
         void Stop();
-
-        #endregion
     }
 }

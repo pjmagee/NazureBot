@@ -22,112 +22,41 @@
 
 namespace NazureBot.Core.Infrastructure.Entities
 {
-    #region Using directives
-
     using System;
     using System.Collections.Generic;
 
     using NazureBot.Modules.Messaging;
 
-    #endregion
-
-    /// <summary>
-    /// The network.
-    /// </summary>
     public class Network : INetwork
     {
-        #region Public Properties
-
-        /// <summary>
-        /// Gets or sets the channels.
-        /// </summary>
-        public virtual ICollection<Channel> Channels { get; set; }
-
-        /// <summary>
-        /// Gets or sets the id.
-        /// </summary>
         public Guid Id { get; set; }
 
-        /// <summary>
-        /// Gets or sets the identity.
-        /// </summary>
         public virtual Identity Identity { get; set; }
-
-        /// <summary>
-        /// Gets or sets the identity id.
-        /// </summary>
         public Guid? IdentityId { get; set; }
 
-        /// <summary>
-        /// Gets or sets the name.
-        /// </summary>
         public string Name { get; set; }
 
-        /// <summary>
-        /// Gets or sets the servers.
-        /// </summary>
         public virtual ICollection<Server> Servers { get; set; }
+        public virtual ICollection<Channel> Channels { get; set; }
 
-        #endregion
-
-        #region Explicit Interface Properties
-
-        /// <summary>
-        /// Gets the channels.
-        /// </summary>
-        /// <value>
-        /// The channels.
-        /// </value>
         IEnumerable<IChannel> INetwork.Channels
         {
-            get
-            {
-                return this.Channels;
-            }
+            get { return this.Channels; }
         }
 
-        /// <summary>
-        /// Gets the identity.
-        /// </summary>
-        /// <value>
-        /// The identity.
-        /// </value>
         IIdentity INetwork.Identity
         {
-            get
-            {
-                return this.Identity;
-            }
+            get { return this.Identity; }
         }
 
-        /// <summary>
-        /// Gets the name.
-        /// </summary>
-        /// <value>
-        /// The name.
-        /// </value>
         string INetwork.Name
         {
-            get
-            {
-                return this.Name;
-            }
+            get { return this.Name; }
         }
 
-        /// <summary>
-        /// Gets the servers.
-        /// </summary>
-        /// <value>
-        /// The servers.
-        /// </value>
         IEnumerable<IServer> INetwork.Servers
         {
-            get
-            {
-                return this.Servers;
-            }
+            get { return this.Servers; }
         }
-
-        #endregion
     }
 }

@@ -22,34 +22,10 @@
 
 namespace NazureBot.Modules.Messaging
 {
-    /// <summary>
-    /// The Server interface.
-    /// </summary>
     public interface IServer
     {
-        #region Public Properties
-
-        /// <summary>
-        /// Gets the address.
-        /// </summary>
-        /// <value>
-        /// The address.
-        /// </value>
         string Address { get; }
-
-        /// <summary>
-        /// Gets the port.
-        /// </summary>
-        /// <value>
-        /// The port.
-        /// </value>
         int Port { get; }
-
-        /// <summary>
-        /// Gets a value indicating whether ssl.
-        /// </summary>
         bool Ssl { get; }
-
-        #endregion
     }
 }

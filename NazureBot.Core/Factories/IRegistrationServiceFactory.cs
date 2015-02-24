@@ -22,27 +22,13 @@
 
 namespace NazureBot.Core.Factories
 {
-    #region Using directives
-
     using NazureBot.Modules.Commands;
 
-    #endregion
-
     /// <summary>
-    /// The RegistrationServiceFactory interface.
+    /// Interface resolved via Ninject Factory 
     /// </summary>
     public interface IRegistrationServiceFactory
     {
-        #region Public Methods and Operators
-
-        /// <summary>
-        /// The create.
-        /// </summary>
-        /// <returns>
-        /// The <see cref="IRegistrationService"/>.
-        /// </returns>
         IRegistrationService Create();
-
-        #endregion
     }
 }

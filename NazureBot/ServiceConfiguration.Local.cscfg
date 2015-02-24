@@ -1,16 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ServiceConfiguration serviceName="NazureBot" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="3" osVersion="*" schemaVersion="2014-01.2.3">
+<ServiceConfiguration serviceName="NazureBot" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="3" osVersion="*" schemaVersion="2014-06.2.4">
   <Role name="NazureBot.UI">
     <Instances count="1" />
     <ConfigurationSettings>
-      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
       <Setting name="Microsoft.ServiceBus.ConnectionString" value="Endpoint=sb://nazurebot.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=okJ2iCevbB4ZVM1jJ5jMUD+eHq2+EyLpTUxgR+zmPI4=" />
     </ConfigurationSettings>
   </Role>
   <Role name="NazureBot.Service">
     <Instances count="1" />
     <ConfigurationSettings>
-      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
       <Setting name="Microsoft.ServiceBus.ConnectionString" value="Endpoint=sb://nazurebot.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=okJ2iCevbB4ZVM1jJ5jMUD+eHq2+EyLpTUxgR+zmPI4=" />
     </ConfigurationSettings>
   </Role>

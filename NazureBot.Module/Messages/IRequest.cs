@@ -22,92 +22,20 @@
 
 namespace NazureBot.Modules.Messages
 {
-    #region Using directives
-
     using System.Threading.Tasks;
-
     using NazureBot.Modules.Messaging;
 
-    #endregion
-
-    /// <summary>
-    /// The Request interface.
-    /// </summary>
     public interface IRequest
     {
-        #region Public Properties
-
-        /// <summary>
-        /// Gets the broadcast.
-        /// </summary>
-        /// <value>
-        /// The broadcast.
-        /// </value>
         MessageBroadcast Broadcast { get; }
-
-        /// <summary>
-        /// Gets the channel.
-        /// </summary>
-        /// <value>
-        /// The channel.
-        /// </value>
         IChannel Channel { get; }
-
-        /// <summary>
-        /// Gets the format.
-        /// </summary>
-        /// <value>
-        /// The format.
-        /// </value>
         MessageFormat Format { get; }
-
-        /// <summary>
-        /// Gets the message.
-        /// </summary>
-        /// <value>
-        /// The message.
-        /// </value>
         string Message { get; }
-
-        /// <summary>
-        /// Gets the server.
-        /// </summary>
-        /// <value>
-        /// The server.
-        /// </value>
         IServer Server { get; }
-
-        /// <summary>
-        /// Gets the user.
-        /// </summary>
-        /// <value>
-        /// The user.
-        /// </value>
         IUser User { get; }
-
-        #endregion
-
-        #region Public Methods and Operators
-
-        /// <summary>
-        /// Creates the response.
-        /// </summary>
-        /// <returns>
-        /// The <see cref="IResponse"/>.
-        /// </returns>
+        
         IResponse CreateResponse();
 
-        /// <summary>
-        /// Sends the response asynchronous.
-        /// </summary>
-        /// <param name="response">
-        /// The response.
-        /// </param>
-        /// <returns>
-        /// The <see cref="Task"/>.
-        /// </returns>
         Task SendResponseAsync(IResponse response);
-
-        #endregion
     }
 }

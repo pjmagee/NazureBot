@@ -22,8 +22,6 @@
 
 namespace NazureBot.Core.Messaging
 {
-    #region Using directives
-
     using System;
     using System.Diagnostics;
     using System.Threading;
@@ -36,77 +34,26 @@ namespace NazureBot.Core.Messaging
 
     using Ninject;
 
-    #endregion
-
     /// <summary>
     /// The fake irc client used to simulate irc chatter from an irc server.
     /// </summary>
     public class FakeIrcClient : AbstractClient, IStartable
     {
-        #region Fields
-
-        /// <summary>
-        /// The is connected
-        /// </summary>
         private bool isConnected;
-
-        /// <summary>
-        /// The network
-        /// </summary>
         private INetwork network;
-
-        /// <summary>
-        /// The server
-        /// </summary>
         private IServer server;
-
-        /// <summary>
-        /// The token source
-        /// </summary>
         private CancellationTokenSource tokenSource;
 
-        #endregion
-
-        #region Public Properties
-
-        /// <summary>
-        /// Gets the description.
-        /// </summary>
         public override string Description
         {
-            get
-            {
-                return typeof(FakeIrcClient).FullName;
-            }
+            get { return typeof(FakeIrcClient).FullName; }
         }
 
-        /// <summary>
-        /// Gets a value indicating whether [is connected].
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if [is connected]; otherwise, <c>false</c>.
-        /// </value>
         public override bool IsConnected
         {
-            get
-            {
-                return this.isConnected;
-            }
+            get { return this.isConnected; }
         }
 
-        #endregion
-
-        #region Public Methods and Operators
-
-        /// <summary>
-        /// Connects the specified network.
-        /// </summary>
-        /// <param name="network">
-        /// The network.
-        /// </param>
-        /// <returns>
-        /// The <see cref="Task"/>.
-        /// </returns>
         public override async Task Connect(INetwork network)
         {
             this.network = network;
@@ -114,15 +61,6 @@ namespace NazureBot.Core.Messaging
             this.isConnected = true;
         }
 
-        /// <summary>
-        /// Connects the specified server.
-        /// </summary>
-        /// <param name="server">
-        /// The server.
-        /// </param>
-        /// <returns>
-        /// The <see cref="Task"/>.
-        /// </returns>
         public override async Task Connect(IServer server)
         {
             this.server = server;
@@ -130,34 +68,16 @@ namespace NazureBot.Core.Messaging
             this.isConnected = true;
         }
 
-        /// <summary>
-        /// Disconnects this instance.
-        /// </summary>
-        /// <returns>
-        /// The <see cref="Task" />.
-        /// </returns>
         public override async Task Disconnect()
         {
             this.isConnected = false;
         }
 
-        /// <summary>
-        /// Sends the response asynchronous.
-        /// </summary>
-        /// <param name="response">
-        /// The response.
-        /// </param>
-        /// <returns>
-        /// The <see cref="Task"/>.
-        /// </returns>
         public override async Task SendResponseAsync(IResponse response)
         {
             Trace.TraceInformation("Sending response: {0}", response.Message);
         }
 
-        /// <summary>
-        /// Starts this instance. Called during activation.
-        /// </summary>
         public void Start()
         {
             this.tokenSource = new CancellationTokenSource();
@@ -180,14 +100,9 @@ namespace NazureBot.Core.Messaging
                 }, this.tokenSource.Token, TaskCreationOptions.LongRunning, TaskScheduler.Current);
         }
 
-        /// <summary>
-        /// Stops this instance. Called during deactivation.
-        /// </summary>
         public void Stop()
         {
             this.tokenSource.Cancel();
         }
-
-        #endregion
     }
 }

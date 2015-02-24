@@ -22,38 +22,14 @@
 
 namespace NazureBot.Core.Factories
 {
-    #region Using directives
-
     using NazureBot.Modules.Messaging;
 
-    #endregion
-
     /// <summary>
-    /// The ConnectionFactory interface.
+    /// Interface resolved via Ninject Factory 
     /// </summary>
     public interface IConnectionFactory
     {
-        #region Public Methods and Operators
-
-        /// <summary>
-        /// The create.
-        /// </summary>
-        /// <returns>
-        /// The <see cref="IConnection"/>.
-        /// </returns>
         IConnection Create();
-
-        /// <summary>
-        /// Creates the specified network.
-        /// </summary>
-        /// <param name="network">
-        /// The network.
-        /// </param>
-        /// <returns>
-        /// The <see cref="IConnection"/>.
-        /// </returns>
         IConnection Create(INetwork network);
-
-        #endregion
     }
 }

@@ -22,8 +22,6 @@
 
 namespace NazureBot.Core.Tests
 {
-    #region Using directives
-
     using System.Security.Principal;
     using System.Threading;
 
@@ -32,19 +30,9 @@ namespace NazureBot.Core.Tests
     using NazureBot.Core.Infrastructure.Entities;
     using NazureBot.Modules.Security;
 
-    #endregion
-
-    /// <summary>
-    /// The unit test 1.
-    /// </summary>
     [TestClass]
     public class UnitTest1
     {
-        #region Public Methods and Operators
-
-        /// <summary>
-        /// The test method 1.
-        /// </summary>
         [TestMethod]
         public void TestMethod1()
         {
@@ -54,7 +42,5 @@ namespace NazureBot.Core.Tests
             GenericPrincipal principal = new GenericPrincipal(identity, new[] { user.AccessLevel.ToString() });
             Thread.CurrentPrincipal = principal;
         }
-
-        #endregion
     }
 }

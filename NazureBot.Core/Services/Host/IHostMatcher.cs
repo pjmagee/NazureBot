@@ -22,40 +22,14 @@
 
 namespace NazureBot.Core.Services.Host
 {
-    #region Using directives
-
     using NazureBot.Core.Infrastructure.Entities;
 
-    #endregion
-
-    /// <summary>
-    /// The ConnectionService interface.
-    /// </summary>
     public interface IConnectionService
     {
     }
 
-    /// <summary>
-    ///     The HostMatcher interface.
-    /// </summary>
     public interface IHostMatcher
     {
-        #region Public Methods and Operators
-
-        /// <summary>
-        /// Determines whether the specified known host is match.
-        /// </summary>
-        /// <param name="knownHost">
-        /// The known host.
-        /// </param>
-        /// <param name="hostmask">
-        /// The hostmask.
-        /// </param>
-        /// <returns>
-        /// The <see cref="bool"/>.
-        /// </returns>
         bool IsMatch(KnownHost knownHost, string hostmask);
-
-        #endregion
     }
 }

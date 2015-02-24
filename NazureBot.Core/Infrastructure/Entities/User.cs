@@ -22,8 +22,6 @@
 
 namespace NazureBot.Core.Infrastructure.Entities
 {
-    #region Using directives
-
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
@@ -31,129 +29,38 @@ namespace NazureBot.Core.Infrastructure.Entities
     using NazureBot.Modules.Messaging;
     using NazureBot.Modules.Security;
 
-    #endregion
-
-    /// <summary>
-    /// The user.
-    /// </summary>
     public class User : IUser
     {
-        #region Constructors and Destructors
+        public Guid Id { get; set; }
+        public AccessLevel AccessLevel { get; set; }
+        public string Description { get; set; }
+        public string Email { get; set; }
+        public KnownHost Host { get; set; }        
+        public string Password { get; set; }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="User"/> class.
-        /// </summary>
+        public virtual ICollection<KnownHost> KnownHosts { get; set; }
+
         public User()
         {
             this.Id = Guid.NewGuid();
             this.AccessLevel = AccessLevel.Guest;
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="User"/> class.
-        /// </summary>
-        /// <param name="hostMask">
-        /// The host mask.
-        /// </param>
         public User(string hostMask) : this()
         {
             Contract.Requires<ArgumentNullException>(hostMask != null, "hostMask");
 
             this.Host = new KnownHost(hostMask, this);
         }
-
-        #endregion
-
-        #region Public Properties
-
-        /// <summary>
-        /// Gets or sets the access level.
-        /// </summary>
-        /// <value>
-        /// The access level.
-        /// </value>
-        public AccessLevel AccessLevel { get; set; }
-
-        /// <summary>
-        /// Gets or sets the description.
-        /// </summary>
-        /// <value>
-        /// The description.
-        /// </value>
-        public string Description { get; set; }
-
-        /// <summary>
-        /// Gets or sets the email.
-        /// </summary>
-        /// <value>
-        /// The email.
-        /// </value>
-        public string Email { get; set; }
-
-        /// <summary>
-        /// Gets or sets the host.
-        /// </summary>
-        /// <value>
-        /// The host.
-        /// </value>
-        public KnownHost Host { get; set; }
-
-        /// <summary>
-        /// Gets or sets the id.
-        /// </summary>
-        /// <value>
-        /// The identifier.
-        /// </value>
-        public Guid Id { get; set; }
-
-        /// <summary>
-        /// Gets or sets the known hosts.
-        /// </summary>
-        /// <value>
-        /// The known hosts.
-        /// </value>
-        public virtual ICollection<KnownHost> KnownHosts { get; set; }
-
-        /// <summary>
-        /// Gets or sets the password.
-        /// </summary>
-        /// <value>
-        /// The password.
-        /// </value>
-        public string Password { get; set; }
-
-        #endregion
-
-        #region Explicit Interface Properties
-
-        /// <summary>
-        /// Gets the access level.
-        /// </summary>
-        /// <value>
-        /// The access level.
-        /// </value>
+        
         AccessLevel IUser.AccessLevel
         {
-            get
-            {
-                return this.AccessLevel;
-            }
+            get { return this.AccessLevel; }
         }
 
-        /// <summary>
-        /// Gets the host.
-        /// </summary>
-        /// <value>
-        /// The host.
-        /// </value>
         IKnownHost IUser.Host
         {
-            get
-            {
-                return this.Host;
-            }
+            get { return this.Host; }
         }
-
-        #endregion
     }
 }

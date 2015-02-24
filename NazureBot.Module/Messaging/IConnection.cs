@@ -22,8 +22,6 @@
 
 namespace NazureBot.Modules.Messaging
 {
-    #region Using directives
-
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.Composition;
@@ -32,94 +30,20 @@ namespace NazureBot.Modules.Messaging
     using NazureBot.Modules.Events;
     using NazureBot.Modules.Messages;
 
-    #endregion
-
-    /// <summary>
-    /// The Connection interface.
-    /// </summary>
     public interface IConnection : IPartImportsSatisfiedNotification
     {
-        #region Public Events
-
-        /// <summary>
-        /// Occurs when [modules changed].
-        /// </summary>
         event EventHandler<ConnectionModulesChangedEventArgs> ModulesChanged;
 
-        #endregion
-
-        #region Public Properties
-
-        /// <summary>
-        /// Gets the client.
-        /// </summary>
-        /// <value>
-        /// The client.
-        /// </value>
         IChatClient Client { get; }
 
-        /// <summary>
-        /// Gets or sets the modules.
-        /// </summary>
-        /// <value>
-        /// The modules.
-        /// </value>
         [ImportMany(typeof(Module), AllowRecomposition = true, RequiredCreationPolicy = CreationPolicy.Any, Source = ImportSource.Any)]
         IEnumerable<Module> Modules { get; set; }
 
-        /// <summary>
-        /// Gets the network.
-        /// </summary>
-        /// <value>
-        /// The network.
-        /// </value>
         INetwork Network { get; }
-
-        /// <summary>
-        /// Gets the server.
-        /// </summary>
-        /// <value>
-        /// The server.
-        /// </value>
         IServer Server { get; }
 
-        #endregion
-
-        #region Public Methods and Operators
-
-        /// <summary>
-        /// Connects the asynchronous.
-        /// </summary>
-        /// <param name="network">
-        /// The network.
-        /// </param>
-        /// <returns>
-        /// The <see cref="Task"/>.
-        /// </returns>
         Task ConnectAsync(INetwork network);
-
-        /// <summary>
-        /// Connects the asynchronous.
-        /// </summary>
-        /// <param name="server">
-        /// The server.
-        /// </param>
-        /// <returns>
-        /// The <see cref="Task"/>.
-        /// </returns>
         Task ConnectAsync(IServer server);
-
-        /// <summary>
-        /// Sends the response.
-        /// </summary>
-        /// <param name="response">
-        /// The response.
-        /// </param>
-        /// <returns>
-        /// The <see cref="Task"/>.
-        /// </returns>
         Task SendResponseAsync(IResponse response);
-
-        #endregion
     }
 }

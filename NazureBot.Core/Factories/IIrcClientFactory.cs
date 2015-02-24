@@ -22,27 +22,13 @@
 
 namespace NazureBot.Core.Factories
 {
-    #region Using directives
-
     using NazureBot.Modules.Messaging;
 
-    #endregion
-
     /// <summary>
-    /// The IrcClientFactory interface.
+    /// Interface resolved via Ninject Factory 
     /// </summary>
     public interface IIrcClientFactory
     {
-        #region Public Methods and Operators
-
-        /// <summary>
-        /// Creates this instance.
-        /// </summary>
-        /// <returns>
-        /// The <see cref="IChatClient"/>.
-        /// </returns>
         IChatClient Create();
-
-        #endregion
     }
 }

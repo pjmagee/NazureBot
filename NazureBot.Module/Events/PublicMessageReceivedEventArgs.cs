@@ -22,43 +22,13 @@
 
 namespace NazureBot.Modules.Events
 {
-    #region Using directives
-
     using System;
 
     using NazureBot.Modules.Messages;
     using NazureBot.Modules.Messaging;
 
-    #endregion
-
-    /// <summary>
-    /// The channel message received event args.
-    /// </summary>
     public class PublicMessageReceivedEventArgs : EventArgs
     {
-        #region Constructors and Destructors
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PublicMessageReceivedEventArgs"/> class.
-        /// </summary>
-        /// <param name="fromUser">
-        /// The fromUser.
-        /// </param>
-        /// <param name="server">
-        /// The server.
-        /// </param>
-        /// <param name="channel">
-        /// The channel.
-        /// </param>
-        /// <param name="format">
-        /// The format.
-        /// </param>
-        /// <param name="broadcast">
-        /// The broadcast.
-        /// </param>
-        /// <param name="message">
-        /// The message.
-        /// </param>
         public PublicMessageReceivedEventArgs(IUser fromUser, IServer server, IChannel channel, MessageFormat format, MessageBroadcast broadcast, string message)
         {
             this.FromUser = fromUser;
@@ -69,58 +39,11 @@ namespace NazureBot.Modules.Events
             this.Message = message;
         }
 
-        #endregion
-
-        #region Public Properties
-
-        /// <summary>
-        /// Gets or sets the broadcast.
-        /// </summary>
-        /// <value>
-        /// The broadcast.
-        /// </value>
         public MessageBroadcast Broadcast { get; set; }
-
-        /// <summary>
-        /// Gets or sets the channel.
-        /// </summary>
-        /// <value>
-        /// The channel.
-        /// </value>
         public IChannel Channel { get; set; }
-
-        /// <summary>
-        /// Gets or sets the format.
-        /// </summary>
-        /// <value>
-        /// The format.
-        /// </value>
         public MessageFormat Format { get; set; }
-
-        /// <summary>
-        /// Gets or sets the message.
-        /// </summary>
-        /// <value>
-        /// The message.
-        /// </value>
         public string Message { get; set; }
-
-        /// <summary>
-        /// Gets or sets the server.
-        /// </summary>
-        /// <value>
-        /// The server.
-        /// </value>
         public IServer Server { get; set; }
-
-        /// <summary>
-        /// Gets or sets the fromUser.
-        /// </summary>
-        /// <value>
-        /// The fromUser.
-        /// </value>
         public IUser FromUser { get; set; }
-
-        #endregion
     }
 }

@@ -22,35 +22,11 @@
 
 namespace NazureBot.Modules.Messaging
 {
-    #region Using directives
-
     using NazureBot.Modules.Security;
 
-    #endregion
-
-    /// <summary>
-    /// The fromUser interface.
-    /// </summary>
     public interface IUser
     {
-        #region Public Properties
-
-        /// <summary>
-        /// Gets the access level.
-        /// </summary>
-        /// <value>
-        /// The access level.
-        /// </value>
         AccessLevel AccessLevel { get; }
-
-        /// <summary>
-        /// Gets the host.
-        /// </summary>
-        /// <value>
-        /// The host.
-        /// </value>
         IKnownHost Host { get; }
-
-        #endregion
     }
 }

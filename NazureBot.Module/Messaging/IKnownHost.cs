@@ -43,32 +43,8 @@ namespace NazureBot.Modules.Messaging
     /// </remarks>
     public interface IKnownHost
     {
-        #region Public Properties
-
-        /// <summary>
-        /// Gets the host.
-        /// </summary>
-        /// <value>
-        /// The host.
-        /// </value>
         string Host { get; }
-
-        /// <summary>
-        /// Gets the ident.
-        /// </summary>
-        /// <value>
-        /// The ident.
-        /// </value>
         string Ident { get; }
-
-        /// <summary>
-        /// Gets the nick.
-        /// </summary>
-        /// <value>
-        /// The nick.
-        /// </value>
         string Nick { get; }
-
-        #endregion
     }
 }

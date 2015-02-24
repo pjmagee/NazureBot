@@ -22,30 +22,13 @@
 
 namespace NazureBot.Core.Factories
 {
-    #region Using directives
-
     using NazureBot.Modules.Messages;
 
-    #endregion
-
     /// <summary>
-    /// The ResponseFactory interface.
+    /// Interface resolved via Ninject Factory 
     /// </summary>
     public interface IResponseFactory
     {
-        #region Public Methods and Operators
-
-        /// <summary>
-        /// Creates the specified request.
-        /// </summary>
-        /// <param name="request">
-        /// The request.
-        /// </param>
-        /// <returns>
-        /// The <see cref="IResponse"/>.
-        /// </returns>
         IResponse Create(IRequest request);
-
-        #endregion
     }
 }

@@ -22,53 +22,17 @@
 
 namespace NazureBot.Core.Infrastructure.Entities
 {
-    #region Using directives
-
     using System;
-
     using NazureBot.Modules.Messaging;
 
-    #endregion
-
-    /// <summary>
-    /// The channel.
-    /// </summary>
     public class Channel : IChannel
     {
-        #region Public Properties
-
-        /// <summary>
-        /// Gets or sets the id.
-        /// </summary>
         public Guid Id { get; set; }
-
-        /// <summary>
-        /// Gets or sets the key.
-        /// </summary>
         public string Key { get; set; }
-
-        /// <summary>
-        /// Gets or sets the name.
-        /// </summary>
         public string Name { get; set; }
-
-        /// <summary>
-        /// Gets or sets the network.
-        /// </summary>
         public virtual Network Network { get; set; }
-
-        /// <summary>
-        /// Gets or sets the network id.
-        /// </summary>
         public Guid? NetworkId { get; set; }
 
-        #endregion
-
-        #region Explicit Interface Properties
-
-        /// <summary>
-        /// Gets the network.
-        /// </summary>
         INetwork IChannel.Network
         {
             get
@@ -76,7 +40,5 @@ namespace NazureBot.Core.Infrastructure.Entities
                 return this.Network;
             }
         }
-
-        #endregion
     }
 }

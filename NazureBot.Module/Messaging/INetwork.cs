@@ -22,51 +22,13 @@
 
 namespace NazureBot.Modules.Messaging
 {
-    #region Using directives
-
     using System.Collections.Generic;
 
-    #endregion
-
-    /// <summary>
-    /// The Network interface.
-    /// </summary>
     public interface INetwork
     {
-        #region Public Properties
-
-        /// <summary>
-        /// Gets the channels.
-        /// </summary>
-        /// <value>
-        /// The channels.
-        /// </value>
         IEnumerable<IChannel> Channels { get; }
-
-        /// <summary>
-        /// Gets the identity.
-        /// </summary>
-        /// <value>
-        /// The identity.
-        /// </value>
         IIdentity Identity { get; }
-
-        /// <summary>
-        /// Gets the name.
-        /// </summary>
-        /// <value>
-        /// The name.
-        /// </value>
         string Name { get; }
-
-        /// <summary>
-        /// Gets the servers.
-        /// </summary>
-        /// <value>
-        /// The servers.
-        /// </value>
         IEnumerable<IServer> Servers { get; }
-
-        #endregion
     }
 }

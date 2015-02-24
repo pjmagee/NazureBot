@@ -43,39 +43,14 @@ namespace NazureBot.XMPP.MatriX
 
     using EventArgs = Matrix.EventArgs;
 
-    /// <summary>
-    /// The matrix xmpp client.
-    /// </summary>
     public class MatrixXMPPClient : AbstractClient
     {
-        /// <summary>
-        /// Gets or sets the xmpp client.
-        /// </summary>
         private XmppClient XmppClient { get; set; }
-
-        /// <summary>
-        /// Gets or sets the server.
-        /// </summary>
         private IServer Server { get; set; }
-
-        /// <summary>
-        /// Gets or sets the username.
-        /// </summary>
         private string Username { get; set; }
-
-        /// <summary>
-        /// Gets or sets the password.
-        /// </summary>
         private string Password { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether connected.
-        /// </summary>
         private bool Connected { get; set; }
 
-        /// <summary>
-        /// The user service
-        /// </summary>
         private readonly IUserService userService;
 
         public override string Description
@@ -94,21 +69,12 @@ namespace NazureBot.XMPP.MatriX
             }
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MatrixXMPPClient"/> class.
-        /// </summary>
-        /// <param name="userService">
-        /// The user service.
-        /// </param>
         public MatrixXMPPClient(IUserService userService) : this()
         {
             Contract.Requires<ArgumentNullException>(userService != null, "userService");
             this.userService = userService;
         }
 
-        /// <summary>
-        /// Prevents a default instance of the <see cref="MatrixXMPPClient"/> class from being created.
-        /// </summary>
         private MatrixXMPPClient()
         {
             

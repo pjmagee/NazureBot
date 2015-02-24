@@ -23,8 +23,6 @@
 
 namespace NazureBot.Core
 {
-    #region Using directives
-
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
@@ -37,61 +35,20 @@ namespace NazureBot.Core
     using NazureBot.Modules.Messaging;
 
     using Ninject;
-
-    #endregion
-
+    
     /// <summary>
     /// The bot implementation.
     /// Also to be injected as a singleton instance.
     /// </summary>
     public sealed class Bot : IBot, IStartable
     {
-        #region Fields
-
-        /// <summary>
-        /// The connection factory
-        /// </summary>
         private readonly IConnectionFactory connectionFactory;
-        
-
-        /// <summary>
-        /// The connection service.
-        /// </summary>
         private readonly IConnectionService connectionService;
-
-        /// <summary>
-        /// The connections
-        /// </summary>
         private readonly List<IConnection> connections;
-
-        /// <summary>
-        /// The module service.
-        /// </summary>
         private readonly IModuleService moduleService;
-
-        /// <summary>
-        /// The network service.
-        /// </summary>
         private readonly INetworkService networkService;
-
-        /// <summary>
-        /// The status
-        /// </summary>
         private BotStatus status;
-
-        #endregion
-
-        #region Constructors and Destructors
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Bot"/> class.
-        /// </summary>
-        /// <param name="networkService">
-        /// The network Service.
-        /// </param>
-        /// <param name="connectionFactory">
-        /// The connection factory.
-        /// </param>
+        
         [Inject]
         public Bot(INetworkService networkService, IConnectionFactory connectionFactory) : this()
         {
@@ -99,51 +56,23 @@ namespace NazureBot.Core
             this.connectionFactory = connectionFactory;
         }
 
-        /// <summary>
-        /// Prevents a default instance of the <see cref="Bot"/> class from being created.
-        /// </summary>
         private Bot()
         {
             this.connections = new List<IConnection>();
             this.Status = BotStatus.Stopped;
         }
 
-        #endregion
-
-        #region Public Events
-
-        /// <summary>
-        /// Occurs when [status changed].
-        /// </summary>
         public event EventHandler<BotStatusChangedEventArgs> StatusChanged;
 
-        #endregion
-
-        #region Public Properties
-
-        /// <summary>
-        /// Gets the status.
-        /// </summary>
-        /// <value>
-        /// The status.
-        /// </value>
         public BotStatus Status
         {
-            get
-            {
-                return this.status;
-            }
-
+            get { return this.status; }
             private set
             {
                 this.OnStatusChanged(new BotStatusChangedEventArgs(value, this.status));
                 this.status = value;
             }
         }
-
-        #endregion
-
-        #region Public Methods and Operators
 
         /// <summary>
         /// Starts this instance. Called during activation.
@@ -154,7 +83,6 @@ namespace NazureBot.Core
 
             foreach (var network in networks)
             {
-                // connect to network
                 var connection = this.connectionFactory.Create(network);
                 this.connections.Add(connection);
                 Trace.TraceInformation("Added connection: {0}", connection);
@@ -165,32 +93,19 @@ namespace NazureBot.Core
         /// Stops this instance. Called during deactivation.
         /// </summary>
         public void Stop()
-        {
-            
+        {            
         }
-
-        #endregion
-
-        #region Methods
-
-        /// <summary>
-        /// Raises the <see cref="E:StatusChanged"/> event.
-        /// </summary>
-        /// <param name="e">
-        /// The <see cref="BotStatusChangedEventArgs"/> instance containing the event data.
-        /// </param>
+        
         private void OnStatusChanged(BotStatusChangedEventArgs e)
         {
             Trace.TraceInformation("Bot status changed. Old: {0} New: {1}", e.OldBotStatus, e.NewBotStatus);
 
-            EventHandler<BotStatusChangedEventArgs> handler = this.StatusChanged;
+            var handler = this.StatusChanged;
             
             if (handler != null)
             {
                 handler(this, e);
             }
         }
-
-        #endregion
     }
 }

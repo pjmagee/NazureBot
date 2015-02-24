@@ -22,8 +22,6 @@
 
 namespace NazureBot.Core.Services.Network
 {
-    #region Using directives
-
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Threading.Tasks;
@@ -31,21 +29,8 @@ namespace NazureBot.Core.Services.Network
     using NazureBot.Core.Infrastructure.Entities;
     using NazureBot.Modules.Messaging;
 
-    #endregion
-
-    /// <summary>
-    /// A fake network service used to produce a list of fake networks to connect to.
-    /// </summary>
     public class FakeNetworkService : INetworkService
     {
-        #region Public Methods and Operators
-
-        /// <summary>
-        /// Gets the networks asynchronous.
-        /// </summary>
-        /// <returns>
-        /// The <see cref="Task" />.
-        /// </returns>
         public async Task<IEnumerable<INetwork>> GetNetworksAsync()
         {
             var networks = new[]
@@ -69,7 +54,5 @@ namespace NazureBot.Core.Services.Network
 
             return await Task.FromResult(networks);
         }
-
-        #endregion
     }
 }

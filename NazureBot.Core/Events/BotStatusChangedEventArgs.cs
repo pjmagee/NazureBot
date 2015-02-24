@@ -22,80 +22,30 @@
 
 namespace NazureBot.Core.Events
 {
-    #region Using directives
-
     using System;
-
-    #endregion
 
     /// <summary>
     /// The bot status changed event args.
     /// </summary>
     public class BotStatusChangedEventArgs : EventArgs
     {
-        #region Fields
-
-        /// <summary>
-        /// The new bot status
-        /// </summary>
         private readonly BotStatus newBotStatus;
-
-        /// <summary>
-        /// The old bot status
-        /// </summary>
         private readonly BotStatus oldBotStatus;
 
-        #endregion
-
-        #region Constructors and Destructors
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BotStatusChangedEventArgs"/> class.
-        /// </summary>
-        /// <param name="newBotStatus">
-        /// The new bot status.
-        /// </param>
-        /// <param name="oldBotStatus">
-        /// The old bot status.
-        /// </param>
         public BotStatusChangedEventArgs(BotStatus newBotStatus, BotStatus oldBotStatus)
         {
             this.oldBotStatus = oldBotStatus;
             this.newBotStatus = newBotStatus;
         }
 
-        #endregion
-
-        #region Public Properties
-
-        /// <summary>
-        /// Gets the new bot status.
-        /// </summary>
-        /// <value>
-        /// The new bot status.
-        /// </value>
         public BotStatus NewBotStatus
         {
-            get
-            {
-                return this.newBotStatus;
-            }
+            get { return this.newBotStatus; }
         }
 
-        /// <summary>
-        /// Gets the old bot status.
-        /// </summary>
-        /// <value>
-        /// The old bot status.
-        /// </value>
         public BotStatus OldBotStatus
         {
-            get
-            {
-                return this.oldBotStatus;
-            }
+            get { return this.oldBotStatus; }
         }
-
-        #endregion
     }
 }

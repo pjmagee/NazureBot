@@ -27,34 +27,11 @@ namespace NazureBot.Modules.Security
     /// </summary>
     public enum AccessLevel
     {
-        /// <summary>
-        /// The denied.
-        /// </summary>
-        Denied = 0, 
-
-        /// <summary>
-        /// The none.
-        /// </summary>
+        Denied = 0,
         None = 1, 
-
-        /// <summary>
-        /// The guest.
-        /// </summary>
         Guest = 2, 
-
-        /// <summary>
-        /// The user.
-        /// </summary>
         User = 3, 
-
-        /// <summary>
-        /// The admin.
-        /// </summary>
-        Admin = 4, 
-
-        /// <summary>
-        /// The root.
-        /// </summary>
+        Admin = 4,
         Root = 5
     }
 }

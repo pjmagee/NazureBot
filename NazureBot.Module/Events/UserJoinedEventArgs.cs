@@ -22,33 +22,11 @@
 
 namespace NazureBot.Modules.Events
 {
-    #region Using directives
-
     using System;
-
     using NazureBot.Modules.Messaging;
 
-    #endregion
-
-    /// <summary>
-    /// The user joined event args.
-    /// </summary>
     public class UserJoinedEventArgs : EventArgs
     {
-        #region Constructors and Destructors
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="UserJoinedEventArgs"/> class.
-        /// </summary>
-        /// <param name="user">
-        /// The user.
-        /// </param>
-        /// <param name="channel">
-        /// The channel.
-        /// </param>
-        /// <param name="server">
-        /// The server.
-        /// </param>
         public UserJoinedEventArgs(IUser user, IChannel channel, IServer server)
         {
             this.User = user;
@@ -56,34 +34,8 @@ namespace NazureBot.Modules.Events
             this.Server = server;
         }
 
-        #endregion
-
-        #region Public Properties
-
-        /// <summary>
-        /// Gets the channel.
-        /// </summary>
-        /// <value>
-        /// The channel.
-        /// </value>
         public IChannel Channel { get; private set; }
-
-        /// <summary>
-        /// Gets the server.
-        /// </summary>
-        /// <value>
-        /// The server.
-        /// </value>
         public IServer Server { get; private set; }
-
-        /// <summary>
-        /// Gets the user.
-        /// </summary>
-        /// <value>
-        /// The user.
-        /// </value>
         public IUser User { get; private set; }
-
-        #endregion
     }
 }

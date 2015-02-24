@@ -22,11 +22,7 @@
 
 namespace NazureBot.Modules.Messaging
 {
-    #region Using directives
-
     using System.Collections.Generic;
-
-    #endregion
 
     /// <summary>
     /// The Identity interface.
@@ -37,56 +33,11 @@ namespace NazureBot.Modules.Messaging
     /// </remarks>
     public interface IIdentity
     {
-        #region Public Properties
-
-        /// <summary>
-        /// Gets the description.
-        /// </summary>
-        /// <value>
-        /// The description.
-        /// </value>
-        string Description { get; }
-
-        /// <summary>
-        /// Gets the networks.
-        /// </summary>
-        /// <value>
-        /// The networks.
-        /// </value>
-        IEnumerable<INetwork> Networks { get; }
-
-        /// <summary>
-        /// Gets the name of the nick.
-        /// </summary>
-        /// <value>
-        /// The name of the nick.
-        /// </value>
+        string Description { get; }        
         string NickName { get; }
-
-        /// <summary>
-        /// Gets the password.
-        /// </summary>
-        /// <value>
-        /// The password.
-        /// </value>
         string Password { get; }
-
-        /// <summary>
-        /// Gets the name of the real.
-        /// </summary>
-        /// <value>
-        /// The name of the real.
-        /// </value>
         string RealName { get; }
-
-        /// <summary>
-        /// Gets the name of the user.
-        /// </summary>
-        /// <value>
-        /// The name of the user.
-        /// </value>
         string UserName { get; }
-
-        #endregion
+        IEnumerable<INetwork> Networks { get; }
     }
 }

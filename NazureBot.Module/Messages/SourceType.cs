@@ -22,19 +22,9 @@
 
 namespace NazureBot.Modules.Messages
 {
-    /// <summary>
-    /// The source type.
-    /// </summary>
     public enum SourceType
     {
-        /// <summary>
-        /// The user.
-        /// </summary>
-        User, 
-
-        /// <summary>
-        /// The channel.
-        /// </summary>
+        User,
         Channel, 
     }
 }

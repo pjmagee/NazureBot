@@ -22,8 +22,6 @@
 
 namespace NazureBot.Core.Services.Module
 {
-    #region Using directives
-
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.Composition.Hosting;
@@ -31,92 +29,31 @@ namespace NazureBot.Core.Services.Module
     using System.IO;
     using System.Linq;
 
-    using Microsoft.WindowsAzure.ServiceRuntime;
     using Microsoft.WindowsAzure.Storage;
     using Microsoft.WindowsAzure.Storage.Blob;
 
-    #endregion
-
-    /// <summary>
-    /// The azure storage catalog.
-    /// </summary>
     public class AzureStorageCatalog : ComposablePartCatalog
     {
-        #region Fields
-
-        /// <summary>
-        ///     The directory catalog.
-        /// </summary>
         private readonly DirectoryCatalog directoryCatalog;
 
-        #endregion
-
-        #region Constructors and Destructors
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AzureStorageCatalog"/> class.
-        /// </summary>
-        /// <param name="storageSetting">
-        /// The storage setting.
-        /// </param>
-        /// <param name="containerName">
-        /// The container name.
-        /// </param>
         public AzureStorageCatalog(string storageSetting, string containerName)
         {
             string localCatalogDirectory = this.GetStorageCatalog(storageSetting, containerName);
+            
             this.directoryCatalog = new DirectoryCatalog(localCatalogDirectory);
 
             this.directoryCatalog.Changed += this.OnChanged;
             this.directoryCatalog.Changing += this.OnChanging;
         }
 
-        #endregion
-
-        #region Public Events
-
-        /// <summary>
-        ///     Occurs when [changed].
-        /// </summary>
         public event EventHandler<ComposablePartCatalogChangeEventArgs> Changed;
-
-        /// <summary>
-        ///     Occurs when [changing].
-        /// </summary>
         public event EventHandler<ComposablePartCatalogChangeEventArgs> Changing;
 
-        #endregion
-
-        #region Public Properties
-
-        /// <summary>
-        ///     Gets the part definitions that are contained in the catalog.
-        /// </summary>
-        /// <returns>
-        ///     The <see cref="T:System.ComponentModel.Composition.Primitives.ComposablePartDefinition" /> contained in the
-        ///     <see cref="T:System.ComponentModel.Composition.Primitives.ComposablePartCatalog" />.
-        /// </returns>
         public override IQueryable<ComposablePartDefinition> Parts
         {
-            get
-            {
-                return this.directoryCatalog.Parts;
-            }
+            get { return this.directoryCatalog.Parts; }
         }
 
-        #endregion
-
-        #region Methods
-
-        /// <summary>
-        /// Releases the unmanaged resources used by the
-        ///     <see cref="T:System.ComponentModel.Composition.Primitives.ComposablePartCatalog"/> and optionally releases the
-        ///     managed resources.
-        /// </summary>
-        /// <param name="disposing">
-        /// true to release both managed and unmanaged resources; false to release only unmanaged
-        ///     resources.
-        /// </param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -129,48 +66,26 @@ namespace NazureBot.Core.Services.Module
             base.Dispose(disposing);
         }
 
-        /// <summary>
-        /// The on changed.
-        /// </summary>
-        /// <param name="e">
-        /// The e.
-        /// </param>
         protected virtual void OnChanged(ComposablePartCatalogChangeEventArgs e)
         {
-            EventHandler<ComposablePartCatalogChangeEventArgs> handler = this.Changed;
+            var handler = this.Changed;
+
             if (handler != null)
             {
                 handler(this, e);
             }
         }
 
-        /// <summary>
-        /// The on changing.
-        /// </summary>
-        /// <param name="e">
-        /// The e.
-        /// </param>
         protected virtual void OnChanging(ComposablePartCatalogChangeEventArgs e)
         {
-            EventHandler<ComposablePartCatalogChangeEventArgs> handler = this.Changing;
+            var handler = this.Changing;
+
             if (handler != null)
             {
                 handler(this, e);
             }
         }
 
-        /// <summary>
-        /// Gets the storage catalog.
-        /// </summary>
-        /// <param name="storageSetting">
-        /// The storage setting.
-        /// </param>
-        /// <param name="containerName">
-        /// Name of the container.
-        /// </param>
-        /// <returns>
-        /// The <see cref="string"/>.
-        /// </returns>
         private string GetStorageCatalog(string storageSetting, string containerName)
         {
             CloudStorageAccount storageAccount = RoleEnvironment.IsEmulated
@@ -182,9 +97,7 @@ namespace NazureBot.Core.Services.Module
 
             var blobContainer = new CloudBlobContainer(location, blobClient.Credentials);
 
-            IEnumerable<IListBlobItem> blobs = blobContainer.ListBlobs(
-                useFlatBlobListing: true, 
-                blobListingDetails: BlobListingDetails.All);
+            IEnumerable<IListBlobItem> blobs = blobContainer.ListBlobs(useFlatBlobListing: true, blobListingDetails: BlobListingDetails.All);
 
             foreach (IListBlobItem item in blobs)
             {
@@ -205,34 +118,14 @@ namespace NazureBot.Core.Services.Module
             return ModuleService.CacheFolder;
         }
 
-        /// <summary>
-        /// Called when [changed].
-        /// </summary>
-        /// <param name="sender">
-        /// The sender.
-        /// </param>
-        /// <param name="e">
-        /// The <see cref="ComposablePartCatalogChangeEventArgs"/> instance containing the event data.
-        /// </param>
         private void OnChanged(object sender, ComposablePartCatalogChangeEventArgs e)
         {
             this.OnChanged(e);
         }
 
-        /// <summary>
-        /// Called when [changing].
-        /// </summary>
-        /// <param name="sender">
-        /// The sender.
-        /// </param>
-        /// <param name="e">
-        /// The <see cref="ComposablePartCatalogChangeEventArgs"/> instance containing the event data.
-        /// </param>
         private void OnChanging(object sender, ComposablePartCatalogChangeEventArgs e)
         {
             this.OnChanging(e);
         }
-
-        #endregion
     }
 }

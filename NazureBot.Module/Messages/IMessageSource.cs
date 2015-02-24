@@ -22,34 +22,12 @@
 
 namespace NazureBot.Modules.Messages
 {
-    #region Using directives
-
     using NazureBot.Modules.Messaging;
 
-    #endregion
-
-    /// <summary>
-    /// The MessageSource interface.
-    /// </summary>
     public interface IMessageSource
     {
-        #region Public Properties
-
-        /// <summary>
-        /// Gets the channel.
-        /// </summary>
         IChannel Channel { get; }
-
-        /// <summary>
-        /// Gets the source type.
-        /// </summary>
         SourceType SourceType { get; }
-
-        /// <summary>
-        /// Gets the user.
-        /// </summary>
         IUser User{ get; }
-
-        #endregion
     }
 }

@@ -22,8 +22,6 @@
 
 namespace NazureBot.Module.Weather
 {
-    #region Using directives
-
     using System.Threading.Tasks;
 
     using NazureBot.Modules;
@@ -31,40 +29,14 @@ namespace NazureBot.Module.Weather
     using NazureBot.Modules.Messages;
     using NazureBot.Modules.Security;
 
-    #endregion
-
-    /// <summary>
-    /// The weather module.
-    /// </summary>
     [Module(Author = "Patrick Magee", Category = "Utils", Description = "Provides weather data", LevelRequired = AccessLevel.None, Version = "0.0.1", Name = "Weather")]
     public class WeatherModule : Module
     {
-        #region Public Methods and Operators
-
-        /// <summary>
-        /// The register commands.
-        /// </summary>
-        /// <param name="registrationService">
-        /// The registration service.
-        /// </param>
         public override void RegisterCommands(IRegistrationService registrationService)
         {
             registrationService.Register(new Command(AccessLevel.None, "!weather", "Weather data", "!weather [post code]", this.WeatherRequestAsync));
         }
 
-        #endregion
-
-        #region Methods
-
-        /// <summary>
-        /// The weather request async.
-        /// </summary>
-        /// <param name="request">
-        /// The request.
-        /// </param>
-        /// <returns>
-        /// The <see cref="Task"/>.
-        /// </returns>
         private async Task WeatherRequestAsync(IRequest request)
         {
             if (request.Message == "Hello")
@@ -79,7 +51,5 @@ namespace NazureBot.Module.Weather
                 await request.SendResponseAsync(response);
             }
         }
-
-        #endregion
     }
 }

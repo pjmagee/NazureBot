@@ -22,24 +22,10 @@
 
 namespace NazureBot.Modules.Messages
 {
-    /// <summary>
-    /// The message format.
-    /// </summary>
     public enum MessageFormat
     {
-        /// <summary>
-        /// The action.
-        /// </summary>
         Action, 
-
-        /// <summary>
-        /// The notice.
-        /// </summary>
-        Notice, 
-
-        /// <summary>
-        /// The message.
-        /// </summary>
+        Notice,
         Message
     }
 }

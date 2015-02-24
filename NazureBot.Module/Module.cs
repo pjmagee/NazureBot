@@ -22,109 +22,38 @@
 
 namespace NazureBot.Modules
 {
-    #region Using directives
-
     using System.ComponentModel.Composition;
 
     using NazureBot.Modules.Commands;
     using NazureBot.Modules.Events;
 
-    #endregion
-
-    /// <summary>
-    /// The module.
-    /// </summary>
     [InheritedExport(typeof(Module))]
     public abstract class Module : IModule
     {
-        #region Public Methods and Operators
-
-        /// <summary>
-        /// Called when [channel message received].
-        /// </summary>
-        /// <param name="sender">
-        /// The sender.
-        /// </param>
-        /// <param name="e">
-        /// The <see cref="PublicMessageReceivedEventArgs"/> instance containing the event data.
-        /// </param>
         public virtual void OnChannelMessageReceived(object sender, PublicMessageReceivedEventArgs e)
         {
         }
 
-        /// <summary>
-        /// Called when [query message received].
-        /// </summary>
-        /// <param name="sender">
-        /// The sender.
-        /// </param>
-        /// <param name="e">
-        /// The <see cref="PrivateMessageReceivedEventArgs"/> instance containing the event data.
-        /// </param>
         public virtual void OnQueryMessageReceived(object sender, PrivateMessageReceivedEventArgs e)
         {
         }
 
-        /// <summary>
-        /// Called when [topic changed].
-        /// </summary>
-        /// <param name="sender">
-        /// The sender.
-        /// </param>
-        /// <param name="e">
-        /// The <see cref="TopicChangedEventArgs"/> instance containing the event data.
-        /// </param>
         public virtual void OnTopicChanged(object sender, TopicChangedEventArgs e)
         {
         }
 
-        /// <summary>
-        /// Called when [user joined].
-        /// </summary>
-        /// <param name="sender">
-        /// The sender.
-        /// </param>
-        /// <param name="e">
-        /// The <see cref="UserJoinedEventArgs"/> instance containing the event data.
-        /// </param>
         public virtual void OnUserJoined(object sender, UserJoinedEventArgs e)
         {
         }
 
-        /// <summary>
-        /// Called when [user kicked].
-        /// </summary>
-        /// <param name="sender">
-        /// The sender.
-        /// </param>
-        /// <param name="e">
-        /// The <see cref="UserKickedEventArgs"/> instance containing the event data.
-        /// </param>
         public virtual void OnUserKicked(object sender, UserKickedEventArgs e)
         {
         }
 
-        /// <summary>
-        /// Called when [user quit].
-        /// </summary>
-        /// <param name="sender">
-        /// The sender.
-        /// </param>
-        /// <param name="e">
-        /// The <see cref="UserQuitEventArgs"/> instance containing the event data.
-        /// </param>
         public virtual void OnUserQuit(object sender, UserQuitEventArgs e)
         {
         }
 
-        /// <summary>
-        /// Registers the commands.
-        /// </summary>
-        /// <param name="registrationService">
-        /// The command registration service.
-        /// </param>
         public abstract void RegisterCommands(IRegistrationService registrationService);
-
-        #endregion
     }
 }

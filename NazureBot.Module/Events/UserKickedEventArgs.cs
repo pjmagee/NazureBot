@@ -22,36 +22,11 @@
 
 namespace NazureBot.Modules.Events
 {
-    #region Using directives
-
     using System;
-
     using NazureBot.Modules.Messaging;
 
-    #endregion
-
-    /// <summary>
-    /// The user kicked event args.
-    /// </summary>
     public class UserKickedEventArgs : EventArgs
     {
-        #region Constructors and Destructors
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="UserKickedEventArgs"/> class.
-        /// </summary>
-        /// <param name="user">
-        /// The user.
-        /// </param>
-        /// <param name="channel">
-        /// The channel.
-        /// </param>
-        /// <param name="server">
-        /// The server.
-        /// </param>
-        /// <param name="reason">
-        /// The reason.
-        /// </param>
         public UserKickedEventArgs(IUser user, IChannel channel, IServer server, string reason = null)
         {
             this.User = user;
@@ -60,42 +35,9 @@ namespace NazureBot.Modules.Events
             this.Reason = reason;
         }
 
-        #endregion
-
-        #region Public Properties
-
-        /// <summary>
-        /// Gets the channel.
-        /// </summary>
-        /// <value>
-        /// The channel.
-        /// </value>
         public IChannel Channel { get; private set; }
-
-        /// <summary>
-        /// Gets the reason.
-        /// </summary>
-        /// <value>
-        /// The reason.
-        /// </value>
         public string Reason { get; private set; }
-
-        /// <summary>
-        /// Gets the server.
-        /// </summary>
-        /// <value>
-        /// The server.
-        /// </value>
         public IServer Server { get; private set; }
-
-        /// <summary>
-        /// Gets the user.
-        /// </summary>
-        /// <value>
-        /// The user.
-        /// </value>
         public IUser User { get; private set; }
-
-        #endregion
     }
 }

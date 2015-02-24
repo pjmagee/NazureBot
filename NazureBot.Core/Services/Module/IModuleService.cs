@@ -22,28 +22,11 @@
 
 namespace NazureBot.Core.Services.Module
 {
-    #region Using directives
-
     using System;
     using System.Collections.Generic;
 
-    #endregion
-
-    /// <summary>
-    /// The ModuleService interface.
-    /// </summary>
     public interface IModuleService
     {
-        #region Public Methods and Operators
-
-        /// <summary>
-        ///     Gets the module exports.
-        /// </summary>
-        /// <returns>
-        ///     The <see cref="IEnumerable" />.
-        /// </returns>
         IEnumerable<Lazy<NazureBot.Modules.Module, IDictionary<string, object>>> GetModuleExports();
-
-        #endregion
     }
 }

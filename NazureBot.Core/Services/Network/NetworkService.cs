@@ -22,8 +22,6 @@
 
 namespace NazureBot.Core.Services.Network
 {
-    #region Using directives
-
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
@@ -35,30 +33,10 @@ namespace NazureBot.Core.Services.Network
 
     using Ninject;
 
-    #endregion
-
-    /// <summary>
-    /// The network service.
-    /// </summary>
     public class NetworkService : INetworkService
     {
-        #region Fields
-
-        /// <summary>
-        /// The database context
-        /// </summary>
         private readonly DatabaseContext databaseContext;
 
-        #endregion
-
-        #region Constructors and Destructors
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NetworkService"/> class.
-        /// </summary>
-        /// <param name="databaseContext">
-        /// The database context.
-        /// </param>
         [Inject]
         public NetworkService(DatabaseContext databaseContext)
         {
@@ -67,21 +45,9 @@ namespace NazureBot.Core.Services.Network
             this.databaseContext = databaseContext;
         }
 
-        #endregion
-
-        #region Public Methods and Operators
-
-        /// <summary>
-        /// Gets the networks asynchronous.
-        /// </summary>
-        /// <returns>
-        /// The <see cref="Task" />.
-        /// </returns>
         public async Task<IEnumerable<INetwork>> GetNetworksAsync()
         {
             return await this.databaseContext.Networks.ToListAsync();
         }
-
-        #endregion
     }
 }

@@ -22,34 +22,12 @@
 
 namespace NazureBot.Core
 {
-    /// <summary>
-    /// The bot status.
-    /// </summary>
     public enum BotStatus
     {
-        /// <summary>
-        /// The starting
-        /// </summary>
-        Starting, 
-
-        /// <summary>
-        /// The started
-        /// </summary>
-        Started, 
-
-        /// <summary>
-        /// The running
-        /// </summary>
-        Running, 
-
-        /// <summary>
-        /// The stopping
-        /// </summary>
-        Stopping, 
-
-        /// <summary>
-        /// The stopped
-        /// </summary>
+        Starting,
+        Started,
+        Running,
+        Stopping,
         Stopped
     }
 }

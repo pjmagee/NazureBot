@@ -22,37 +22,29 @@
 
 namespace NazureBot.Core.Infrastructure.Entities
 {
-    #region Using directives
-
     using System;
     using System.Diagnostics;
     using System.Diagnostics.Contracts;
 
     using NazureBot.Modules.Messaging;
 
-    #endregion
-
-    /// <summary>
-    /// The known host.
-    /// </summary>
     public class KnownHost : IKnownHost, IEquatable<string>
     {
-        #region Constructors and Destructors
+        public Guid Id { get; set; }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="KnownHost" /> class.
-        /// </summary>
+        public string Host { get; private set; }
+        public string HostMask { get; set; }
+        public string Ident { get; private set; }
+        public string Nick { get; private set; }
+
+        public virtual User User { get; set; }
+        public Guid? UserId { get; set; }
+
         public KnownHost()
         {
             this.Id = Guid.NewGuid();
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="KnownHost"/> class.
-        /// </summary>
-        /// <param name="hostmask">
-        /// The hostmask.
-        /// </param>
         public KnownHost(string hostmask) : this()
         {
             Contract.Requires<ArgumentNullException>(hostmask != null, "hostmask");
@@ -62,7 +54,7 @@ namespace NazureBot.Core.Infrastructure.Entities
         }
 
         /// <summary>
-        /// Tries to parse the hostmask as an IRC hostmask.
+        /// Tries to parse the hostmask as an IRC hostmask.1
         /// </summary>
         private void TryParseIrcSegments()
         {
@@ -94,15 +86,6 @@ namespace NazureBot.Core.Infrastructure.Entities
             }
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="KnownHost"/> class.
-        /// </summary>
-        /// <param name="hostmask">
-        /// The hostmask.
-        /// </param>
-        /// <param name="user">
-        /// The user.
-        /// </param>
         public KnownHost(string hostmask, User user) : this(hostmask)
         {
             Contract.Requires<ArgumentNullException>(user != null, "user");
@@ -110,89 +93,14 @@ namespace NazureBot.Core.Infrastructure.Entities
             this.User = user;
         }
 
-        #endregion
-
-        #region Public Properties
-
-        /// <summary>
-        /// Gets the host.
-        /// </summary>
-        /// <value>
-        /// The host.
-        /// </value>
-        public string Host { get; private set; }
-
-        /// <summary>
-        /// Gets or sets the host mask.
-        /// </summary>
-        /// <value>
-        /// The host mask.
-        /// </value>
-        public string HostMask { get; set; }
-
-        /// <summary>
-        /// Gets or sets the id.
-        /// </summary>
-        /// <value>
-        /// The identifier.
-        /// </value>
-        public Guid Id { get; set; }
-
-        /// <summary>
-        /// Gets the ident.
-        /// </summary>
-        /// <value>
-        /// The ident.
-        /// </value>
-        public string Ident { get; private set; }
-
-        /// <summary>
-        /// Gets the nick.
-        /// </summary>
-        /// <value>
-        /// The nick.
-        /// </value>
-        public string Nick { get; private set; }
-
-        /// <summary>
-        /// Gets or sets the user.
-        /// </summary>
-        public virtual User User { get; set; }
-
-        /// <summary>
-        /// Gets or sets the user id.
-        /// </summary>
-        public Guid? UserId { get; set; }
-
-        #endregion
-
-        #region Public Methods and Operators
-
-        /// <summary>
-        /// The equals.
-        /// </summary>
-        /// <param name="hostmask">
-        /// The hostmask.
-        /// </param>
-        /// <returns>
-        /// The <see cref="bool"/>.
-        /// </returns>
         public bool Equals(string hostmask)
         {
             return this.HostMask.Equals(hostmask, StringComparison.OrdinalIgnoreCase);
         }
 
-        /// <summary>
-        /// The to string.
-        /// </summary>
-        /// <returns>
-        /// The full unmodified hostmask as a <see cref="string"/>.
-        /// </returns>
         public override string ToString()
         {
             return this.HostMask;
         }
-
-        #endregion
     }
 }

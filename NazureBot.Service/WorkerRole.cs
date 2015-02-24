@@ -22,8 +22,6 @@
 
 namespace NazureBot.Service
 {
-    #region Using directives
-
     using System;
     using System.Diagnostics;
     using System.Net;
@@ -50,58 +48,20 @@ namespace NazureBot.Service
     using Ninject.Extensions.Azure;
     using Ninject.Extensions.Factory;
 
-    #endregion
-
-    /// <summary>
-    /// The worker role.
-    /// </summary>
     public class WorkerRole : NinjectRoleEntryPoint
     {
-        #region Constants
-
-        /// <summary>
-        /// The queue name
-        /// </summary>
         private const string QueueName = "ProcessingQueue";
 
-        #endregion
-
-        #region Fields
-
-        /// <summary>
-        /// The completed event
-        /// </summary>
         private readonly ManualResetEvent CompletedEvent = new ManualResetEvent(false);
-
-        /// <summary>
-        /// The bot.
-        /// </summary>
         private IBot bot;
-
-        /// <summary>
-        /// The client
-        /// </summary>
         private QueueClient client;
-
-        #endregion
-
-        #region Public Methods and Operators
-
-        /// <summary>
-        /// Creates the bot.
-        /// </summary>
-        /// <param name="bot">
-        /// The bot.
-        /// </param>
+        
         [Inject]
         public void CreateBot(IBot bot)
         {
             this.bot = bot;
         }
 
-        /// <summary>
-        /// The run.
-        /// </summary>
         public override void Run()
         {
             Trace.WriteLine("Starting processing of messages");
@@ -114,13 +74,11 @@ namespace NazureBot.Service
 
                     if (receivedMessage.Properties.ContainsKey("start"))
                     {
-                        // start bot
                         this.bot.Start();
                     }
 
                     if (receivedMessage.Properties.ContainsKey("stop"))
                     {
-                        // stop bot
                         this.bot.Stop();
                     }
                 }
@@ -133,16 +91,6 @@ namespace NazureBot.Service
             this.CompletedEvent.WaitOne();
         }
 
-        #endregion
-
-        #region Methods
-
-        /// <summary>
-        /// The extension point to create the kernel and load all modules for your azure role.
-        /// </summary>
-        /// <returns>
-        /// The kernel
-        /// </returns>
         protected override IKernel CreateKernel()
         {
             var kernal = new StandardKernel();
@@ -150,12 +98,6 @@ namespace NazureBot.Service
             return kernal;
         }
 
-        /// <summary>
-        /// The extension point to perform custom startup actions for your azure role. This method is called after the kernel is created.
-        /// </summary>
-        /// <returns>
-        /// True if startup succeeds, False if it fails. The default implementation returns True.
-        /// </returns>
         protected override bool OnRoleStarted()
         {
             ServicePointManager.DefaultConnectionLimit = 12;
@@ -174,9 +116,6 @@ namespace NazureBot.Service
             return base.OnRoleStarted();
         }
 
-        /// <summary>
-        /// The extension point to perform custom shutdown actions for your azure role. This method is called after the ninject kernel is disposed.
-        /// </summary>
         protected override void OnRoleStopped()
         {
             this.client.Close();
@@ -184,12 +123,6 @@ namespace NazureBot.Service
             base.OnRoleStopped();
         }
 
-        /// <summary>
-        /// Registers the services.
-        /// </summary>
-        /// <param name="kernel">
-        /// The kernel.
-        /// </param>
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IBot>().To<Bot>().InSingletonScope();
@@ -224,7 +157,5 @@ namespace NazureBot.Service
 
             kernel.Bind<DatabaseContext>().ToSelf().InThreadScope();
         }
-
-        #endregion
     }
 }

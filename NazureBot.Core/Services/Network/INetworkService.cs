@@ -22,30 +22,13 @@
 
 namespace NazureBot.Core.Services.Network
 {
-    #region Using directives
-
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using NazureBot.Modules.Messaging;
 
-    #endregion
-
-    /// <summary>
-    ///     The NetworkService interface.
-    /// </summary>
     public interface INetworkService
     {
-        #region Public Methods and Operators
-
-        /// <summary>
-        ///     Gets the networks asynchronous.
-        /// </summary>
-        /// <returns>
-        ///     The <see cref="Task" />.
-        /// </returns>
         Task<IEnumerable<INetwork>> GetNetworksAsync();
-
-        #endregion
     }
 }

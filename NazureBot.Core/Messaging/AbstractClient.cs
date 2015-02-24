@@ -22,8 +22,6 @@
 
 namespace NazureBot.Core.Messaging
 {
-    #region Using directives
-
     using System;
     using System.Threading.Tasks;
 
@@ -31,123 +29,26 @@ namespace NazureBot.Core.Messaging
     using NazureBot.Modules.Messages;
     using NazureBot.Modules.Messaging;
 
-    #endregion
-
-    /// <summary>
-    /// The abstract irc client.
-    /// </summary>
     public abstract class AbstractClient : IChatClient
     {
-        #region Public Events
-
-        /// <summary>
-        /// Occurs when [private message received].
-        /// </summary>
         public event EventHandler<PrivateMessageReceivedEventArgs> PrivateMessageReceived;
-
-        /// <summary>
-        /// Occurs when [public message received].
-        /// </summary>
         public event EventHandler<PublicMessageReceivedEventArgs> PublicMessageReceived;
-
-        /// <summary>
-        /// Occurs when [topic changed].
-        /// </summary>
         public event EventHandler<TopicChangedEventArgs> TopicChanged;
-
-        /// <summary>
-        /// Occurs when [user joined].
-        /// </summary>
         public event EventHandler<UserJoinedEventArgs> UserJoined;
-
-        /// <summary>
-        /// Occurs when [user kicked].
-        /// </summary>
         public event EventHandler<UserKickedEventArgs> UserKicked;
-
-        /// <summary>
-        /// Occurs when [user quit].
-        /// </summary>
         public event EventHandler<UserQuitEventArgs> UserQuit;
 
-        #endregion
-
-        #region Public Properties
-
-        /// <summary>
-        /// Gets the description.
-        /// </summary>
-        /// <value>
-        /// The description.
-        /// </value>
         public abstract string Description { get; }
-
-        /// <summary>
-        /// Gets a value indicating whether [is connected].
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if [is connected]; otherwise, <c>false</c>.
-        /// </value>
         public abstract bool IsConnected { get; }
 
-        #endregion
-
-        #region Public Methods and Operators
-
-        /// <summary>
-        /// Connects the specified network.
-        /// </summary>
-        /// <param name="network">
-        /// The network.
-        /// </param>
-        /// <returns>
-        /// The <see cref="Task"/>.
-        /// </returns>
         public abstract Task Connect(INetwork network);
-
-        /// <summary>
-        /// Connects the specified server.
-        /// </summary>
-        /// <param name="server">
-        /// The server.
-        /// </param>
-        /// <returns>
-        /// The <see cref="Task"/>.
-        /// </returns>
         public abstract Task Connect(IServer server);
-
-        /// <summary>
-        /// Disconnects this instance.
-        /// </summary>
-        /// <returns>
-        /// The <see cref="Task" />.
-        /// </returns>
         public abstract Task Disconnect();
-
-        /// <summary>
-        /// Sends the response asynchronous.
-        /// </summary>
-        /// <param name="response">
-        /// The response.
-        /// </param>
-        /// <returns>
-        /// The <see cref="Task"/>.
-        /// </returns>
         public abstract Task SendResponseAsync(IResponse response);
 
-        #endregion
-
-        #region Methods
-
-        /// <summary>
-        /// Raises the <see cref="E:PrivateMessageReceived"/> event.
-        /// </summary>
-        /// <param name="e">
-        /// The <see cref="PrivateMessageReceivedEventArgs"/> instance containing the event data.
-        /// </param>
         protected virtual void OnPrivateMessageReceived(PrivateMessageReceivedEventArgs e)
         {
-            EventHandler<PrivateMessageReceivedEventArgs> handler = this.PrivateMessageReceived;
+            var handler = this.PrivateMessageReceived;
 
             if (handler != null)
             {
@@ -155,15 +56,9 @@ namespace NazureBot.Core.Messaging
             }
         }
 
-        /// <summary>
-        /// Raises the <see cref="E:PublicMessageReceived"/> event.
-        /// </summary>
-        /// <param name="e">
-        /// The <see cref="PublicMessageReceivedEventArgs"/> instance containing the event data.
-        /// </param>
         protected virtual void OnPublicMessageReceived(PublicMessageReceivedEventArgs e)
         {
-            EventHandler<PublicMessageReceivedEventArgs> handler = this.PublicMessageReceived;
+            var handler = this.PublicMessageReceived;
 
             if (handler != null)
             {
@@ -171,15 +66,9 @@ namespace NazureBot.Core.Messaging
             }
         }
 
-        /// <summary>
-        /// Raises the <see cref="E:TopicChanged"/> event.
-        /// </summary>
-        /// <param name="e">
-        /// The <see cref="TopicChangedEventArgs"/> instance containing the event data.
-        /// </param>
         protected virtual void OnTopicChanged(TopicChangedEventArgs e)
         {
-            EventHandler<TopicChangedEventArgs> handler = this.TopicChanged;
+            var handler = this.TopicChanged;
 
             if (handler != null)
             {
@@ -187,15 +76,9 @@ namespace NazureBot.Core.Messaging
             }
         }
 
-        /// <summary>
-        /// Raises the <see cref="E:UserJoined"/> event.
-        /// </summary>
-        /// <param name="e">
-        /// The <see cref="UserJoinedEventArgs"/> instance containing the event data.
-        /// </param>
         protected virtual void OnUserJoined(UserJoinedEventArgs e)
         {
-            EventHandler<UserJoinedEventArgs> handler = this.UserJoined;
+            var handler = this.UserJoined;
 
             if (handler != null)
             {
@@ -203,38 +86,24 @@ namespace NazureBot.Core.Messaging
             }
         }
 
-        /// <summary>
-        /// Raises the <see cref="E:UserKicked"/> event.
-        /// </summary>
-        /// <param name="e">
-        /// The <see cref="UserKickedEventArgs"/> instance containing the event data.
-        /// </param>
         protected virtual void OnUserKicked(UserKickedEventArgs e)
         {
-            EventHandler<UserKickedEventArgs> handler = this.UserKicked;
+            var handler = this.UserKicked;
 
             if (handler != null)
             {
                 handler(this, e);
             }
         }
-
-        /// <summary>
-        /// Raises the <see cref="E:UserQuit"/> event.
-        /// </summary>
-        /// <param name="e">
-        /// The <see cref="UserQuitEventArgs"/> instance containing the event data.
-        /// </param>
+        
         protected virtual void OnUserQuit(UserQuitEventArgs e)
         {
-            EventHandler<UserQuitEventArgs> handler = this.UserQuit;
+            var handler = this.UserQuit;
 
             if (handler != null)
             {
                 handler(this, e);
             }
         }
-
-        #endregion
     }
 }

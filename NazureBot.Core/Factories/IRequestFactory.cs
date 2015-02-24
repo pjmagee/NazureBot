@@ -22,46 +22,14 @@
 
 namespace NazureBot.Core.Factories
 {
-    #region Using directives
-
     using NazureBot.Modules.Messages;
     using NazureBot.Modules.Messaging;
 
-    #endregion
-
     /// <summary>
-    /// The RequestFactory interface.
+    /// Interface resolved via Ninject Factory 
     /// </summary>
     public interface IRequestFactory
     {
-        #region Public Methods and Operators
-
-        /// <summary>
-        /// Creates the specified user.
-        /// </summary>
-        /// <param name="user">
-        /// The user.
-        /// </param>
-        /// <param name="server">
-        /// The server.
-        /// </param>
-        /// <param name="messageFormat">
-        /// The message format.
-        /// </param>
-        /// <param name="messageBroadcast">
-        /// The message broadcast.
-        /// </param>
-        /// <param name="message">
-        /// The message.
-        /// </param>
-        /// <param name="connection">
-        /// The connection.
-        /// </param>
-        /// <returns>
-        /// The <see cref="IRequest"/>.
-        /// </returns>
         IRequest Create(IUser user, IServer server, MessageFormat messageFormat, MessageBroadcast messageBroadcast, string message, IConnection connection);
-
-        #endregion
     }
 }

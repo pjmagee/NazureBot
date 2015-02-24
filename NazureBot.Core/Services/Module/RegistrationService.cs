@@ -22,8 +22,6 @@
 
 namespace NazureBot.Core.Services.Module
 {
-    #region Using directives
-
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
@@ -31,66 +29,28 @@ namespace NazureBot.Core.Services.Module
 
     using NazureBot.Modules.Commands;
 
-    #endregion
-
     /// <summary>
     ///     The command registration service.
     /// </summary>
     public class RegistrationService : IRegistrationService
     {
-        #region Fields
-
-        /// <summary>
-        /// The commands
-        /// </summary>
         private readonly List<ICommand> commands;
 
-        #endregion
-
-        #region Constructors and Destructors
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RegistrationService" /> class.
-        /// </summary>
         public RegistrationService()
         {
             this.commands = new List<ICommand>();
         }
 
-        #endregion
-
-        #region Public Properties
-
-        /// <summary>
-        /// Gets the registered commands.
-        /// </summary>
-        /// <value>
-        /// The registered commands.
-        /// </value>
         public IEnumerable<ICommand> RegisteredCommands
         {
-            get
-            {
-                return this.commands;
-            }
+            get { return this.commands; }
         }
 
-        #endregion
-
-        #region Public Methods and Operators
-
-        /// <summary>
-        /// Clears this instance.
-        /// </summary>
         public void Clear()
         {
             this.commands.Clear();
         }
 
-        /// <summary>
-        /// Registers the specified command.
-        /// </summary>
-        /// <param name="command">The command.</param>
         public void Register(ICommand command)
         {
             Contract.Requires<ArgumentNullException>(command != null, "command");
@@ -98,24 +58,14 @@ namespace NazureBot.Core.Services.Module
             this.commands.Add(command);
         }
 
-        /// <summary>
-        /// Registers the specified commands.
-        /// </summary>
-        /// <param name="commands">The commands.</param>
         public void Register(IEnumerable<ICommand> commands)
         {
             this.commands.AddRange(commands);
         }
 
-        /// <summary>
-        /// Registers the specified commands.
-        /// </summary>
-        /// <param name="commands">The commands.</param>
         public void Register(params ICommand[] commands)
         {
             this.Register(commands.AsEnumerable());
         }
-
-        #endregion
     }
 }

@@ -33,7 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Matrix">
-      <HintPath>..\packages\MatriX.1.5.5.0\lib\net45\Matrix.dll</HintPath>
+      <HintPath>..\packages\MatriX.1.6.0.6\lib\net45\Matrix.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -48,6 +48,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

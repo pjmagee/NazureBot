@@ -22,34 +22,13 @@
 
 namespace NazureBot.Core.Services.Host
 {
-    #region Using directives
-
     using System;
     using System.Diagnostics.Contracts;
 
     using NazureBot.Core.Infrastructure.Entities;
-
-    #endregion
-
-    /// <summary>
-    ///     The default host matcher.
-    /// </summary>
+    
     public class DefaultHostMatcher : IHostMatcher
     {
-        #region Public Methods and Operators
-
-        /// <summary>
-        /// Determines whether the specified known host is match.
-        /// </summary>
-        /// <param name="knownHost">
-        /// The known host.
-        /// </param>
-        /// <param name="hostmask">
-        /// The hostmask.
-        /// </param>
-        /// <returns>
-        /// The <see cref="bool"/>.
-        /// </returns>
         public bool IsMatch(KnownHost knownHost, string hostmask)
         {
             Contract.Requires<ArgumentNullException>(knownHost != null, "knownHost");
@@ -57,7 +36,5 @@ namespace NazureBot.Core.Services.Host
 
             return knownHost.Equals(hostmask);
         }
-
-        #endregion
     }
 }

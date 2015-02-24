@@ -22,65 +22,24 @@
 
 namespace NazureBot.Core.Infrastructure.Entities
 {
-    #region Using directives
-
     using System;
     using System.Collections.Generic;
     using System.Linq;
 
     using NazureBot.Modules.Messaging;
 
-    #endregion
-
-    /// <summary>
-    /// The identity.
-    /// </summary>
     public class Identity : IIdentity
     {
-        #region Public Properties
-
-        /// <summary>
-        /// Gets or sets the description.
-        /// </summary>
-        public string Description { get; set; }
-
-        /// <summary>
-        /// Gets or sets the id.
-        /// </summary>
         public Guid Id { get; set; }
 
-        /// <summary>
-        /// Gets or sets the networks.
-        /// </summary>
-        public virtual ICollection<Network> Networks { get; set; }
-
-        /// <summary>
-        /// Gets or sets the nick name.
-        /// </summary>
+        public string Description { get; set; }
         public string NickName { get; set; }
-
-        /// <summary>
-        /// Gets or sets the password.
-        /// </summary>
         public string Password { get; set; }
-
-        /// <summary>
-        /// Gets or sets the real name.
-        /// </summary>
         public string RealName { get; set; }
-
-        /// <summary>
-        /// Gets or sets the user name.
-        /// </summary>
         public string UserName { get; set; }
 
-        #endregion
+        public virtual ICollection<Network> Networks { get; set; }
 
-        #region Explicit Interface Properties
-
-        /// <summary>
-        /// Gets the networks.
-        /// </summary>
         IEnumerable<INetwork> IIdentity.Networks
         {
             get
@@ -88,8 +47,6 @@ namespace NazureBot.Core.Infrastructure.Entities
                 return this.Networks.ToList();
             }
         }
-
-        #endregion
     }
 
     

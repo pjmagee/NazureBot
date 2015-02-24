@@ -22,19 +22,9 @@
 
 namespace NazureBot.Modules.Messages
 {
-    /// <summary>
-    /// The message broadcast.
-    /// </summary>
     public enum MessageBroadcast
     {
-        /// <summary>
-        /// The public.
-        /// </summary>
-        Public, 
-
-        /// <summary>
-        /// The private.
-        /// </summary>
+        Public,
         Private
     }
 }
